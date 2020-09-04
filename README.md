@@ -11,23 +11,26 @@ $ yarn create @umijs/umi-app
 
 ## 其他依赖:
 
+#### dependencies:
+
 - moment
 - js-cookie
-- 
+- @types/js-cookie
 
+#### devDependencies:
 
+- eslint
+- @umijs/fabric
 
+## 快速开始：
 
-
-## Getting Started
-
-Install dependencies,
+安装依赖:
 
 ```bash
 $ yarn
 ```
 
-Start the dev server,
+开启dev服务器:
 
 ```bash
 $ yarn start

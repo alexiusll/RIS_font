@@ -10,7 +10,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  copy: ['/src/assets/favicon.png'],
+  copy: ['/src/assets/favicon.png'], // 设置要复制到输出目录的文件或文件夹。
   publicPath: '/', //静态资源
   history: { type: 'hash' }, // 使用hash路由
   hash: true,

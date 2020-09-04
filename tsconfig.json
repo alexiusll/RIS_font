@@ -2,24 +2,24 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    // "lib": ["esnext", "dom"],
     "moduleResolution": "node",
+    // "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    // "noImplicitReturns": true,
     "importHelpers": true,
     "jsx": "react",
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": "./",
+    // "skipLibCheck": true,
     "strict": true,
+    // "allowJs": true,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "mock/**/*",
-    "src/**/*",
-    "config/**/*",
-    ".umirc.ts",
-    "typings.d.ts"
-  ]
+  "include": ["mock/**/*", "src/**/*", "config/**/*", ".umirc.ts", "typings.d.ts"]
 }
