@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import logoImg from '@/assets/rayplus.png';
 import { UseInfoDataType } from '@/models/data';
-import SignModal from '../components/SignModal/index';
+// import SignModal from '../components/SignModal/index';
 import style from './index.less';
 
 export interface BasicLayoutProps extends ProLayoutProps {
@@ -37,9 +37,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
 
   const [SignModalVisible, setSignModalVisible] = useState(false);
 
-  const SignModal_closeHandler = () => {
-    setSignModalVisible(false);
-  };
+  // const SignModal_closeHandler = () => {
+  //   setSignModalVisible(false);
+  // };
 
   const SignModal_OpenHandler = () => {
     setSignModalVisible(true);
@@ -92,7 +92,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         {children}
       </ProLayout>
 
-      <SignModal visible={SignModalVisible} closeHandler={SignModal_closeHandler} />
+      {/* <SignModal visible={SignModalVisible} closeHandler={SignModal_closeHandler} /> */}
     </>
   );
 };

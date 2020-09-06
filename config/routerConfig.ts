@@ -8,7 +8,13 @@ export default [
     routes: [
       {
         path: '/',
-        component: '@/pages/index.tsx',
+        component: '@/layouts/HeaderLayout',
+        routes: [
+          {
+            path: '/',
+            component: '@/pages/index.tsx',
+          },
+        ],
       },
       {
         component: '@/pages/404',

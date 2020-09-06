@@ -8,6 +8,13 @@
 
 export default {
   dev: {
+    '/rbac': {
+      target: 'rbac url',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/rbac': '',
+      },
+    },
     '/api': {
       target: 'your pre url',
       changeOrigin: true,
