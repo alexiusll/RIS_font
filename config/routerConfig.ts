@@ -18,10 +18,10 @@ export default [
             path: '/',
             component: '@/pages/index.tsx',
           },
+          {
+            component: '404',
+          },
         ],
-      },
-      {
-        component: '@/pages/404',
       },
     ],
   },
