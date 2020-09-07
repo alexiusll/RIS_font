@@ -1,4 +1,10 @@
-// https://umijs.org/config/
+/*
+ * @Descripttion: 项目的配置文件
+ * @Author: linkenzone
+ * @Date: 2020-09-04 00:20:42
+ * 配置文件文档 : https://umijs.org/config/
+ */
+
 import { defineConfig } from 'umi';
 import routerConfig from './routerConfig';
 import proxy from './proxy';
@@ -15,7 +21,7 @@ export default defineConfig({
   history: { type: 'hash' }, // 使用hash路由
   hash: true,
   mock: false, //关闭mock
-  routes: routerConfig,
+  routes: routerConfig, // 导入路由
   dynamicImport: {}, // 启动按需加载
   locale: {
     default: 'zh-CN',

@@ -1,5 +1,9 @@
-// https://umijs.org/zh-CN/docs/routing
-// 路由配置
+/*
+ * @Descripttion: 路由配置
+ * @Author: linkenzone
+ * @Date: 2020-09-04 00:20:59
+ * 路由配置 : https://umijs.org/zh-CN/docs/routing
+ */
 
 export default [
   {

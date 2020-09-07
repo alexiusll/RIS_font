@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: 这里定义一些可以全局使用的Model
+ * @Author: linkenzone
+ * @Date: 2020-09-06 21:24:32
+ */
+
 import { Effect, Reducer } from 'umi';
 import { message } from 'antd';
 // import { ModifyInGroupInfo } from '@/services/global';

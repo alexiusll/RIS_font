@@ -1,6 +1,17 @@
+/*
+ * @Descripttion: 通用的工具类
+ * @Author: linkenzone
+ * @Date: 2020-09-06 22:14:37
+ */
+
+
 import moment from 'moment';
 
-// 去掉请求中的NULL元素
+/**
+ * @description: 去掉请求中的NULL元素
+ * @param data: any
+ * @return data: any
+ */
 export function removeNull(data: any) {
   if (Object.prototype.toString.call(data) !== '[object Object]') {
     throw new Error('request data is not a object.');
@@ -18,4 +29,14 @@ export function removeNull(data: any) {
     }
   }
   return data;
+}
+
+/**
+ * @description: 根据获得的生日返回年龄
+ * @param birthday: any （传入moment类型即可)
+ * @return number
+ */
+export function getAge(birthday: any) {
+  const duration = moment.duration(moment().diff(birthday));
+  return duration.years();
 }

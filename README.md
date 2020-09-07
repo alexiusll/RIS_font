@@ -1,3 +1,8 @@
+<!--
+ * @Descripttion: 
+ * @Author: linkenzone
+ * @Date: 2020-09-04 00:13:06
+-->
 # 项目通用脚手架
 
 创建方式: 
@@ -36,6 +41,12 @@ $ yarn
 $ yarn start
 ```
 
+
+## 推荐使用的vscode插件:
+- Eslint
+- Prettier
+- One Dark Pro
+- koroFileHeader
 
 
 ## vscode 配置文件参考:

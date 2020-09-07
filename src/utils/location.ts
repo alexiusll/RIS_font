@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: 与location相关的操作
+ * @Author: linkenzone
+ * @Date: 2020-09-06 22:12:57
+ */
+
 // 获取样本id
 export const getSampleId = () => {
   const { pathname, hash } = window.location;

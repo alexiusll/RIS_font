@@ -1,4 +1,9 @@
-// 项目通用头文件
+/*
+ * @Descripttion: 通用头部菜单
+ * @Author: linkenzone
+ * @Date: 2020-09-06 21:24:32
+ */
+
 import ProLayout, {
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,

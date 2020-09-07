@@ -1,13 +1,17 @@
-/**
- * request 网络请求工具
+/*
+ * @Descripttion: request 网络请求工具
+ * @Author: linkenzone
+ * @Date: 2020-09-06 22:13:59
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 
+ 
 import { extend } from 'umi-request';
 import { notification, message } from 'antd';
 import Cookies from 'js-cookie';
 import { removeNull } from './util';
 
+// #region 设置
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -25,7 +29,6 @@ const codeMessage = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
 };
-
 const config = {
   // mock
   mock: 'http://39.96.191.139:3000/mock/12',
@@ -37,6 +40,7 @@ const config = {
   prod: 'http://www.rayplus.top:84',
   prod_auth: 'http://www.rayplus.top:81',
 };
+// #endregion
 
 /**
  * 异常处理程序

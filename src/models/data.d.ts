@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: 全局使用的数据类型
+ * @Author: linkenzone
+ * @Date: 2020-09-06 21:24:32
+ */
+
 export interface UseInfoDataType {
   account: string;
   department: string;
