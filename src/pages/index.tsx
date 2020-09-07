@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'umi';
+// import { connect } from 'umi';
 import styles from './index.less';
 
 export default () => {

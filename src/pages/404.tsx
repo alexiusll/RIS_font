@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: 404页面，目前很简陋
+ * @Author: linkenzone
+ * @Date: 2020-09-06 21:24:32
+ */
+
 import React, { FC } from 'react';
 
 const errorPage: FC<{}> = () => {
