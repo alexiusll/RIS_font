@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar, Menu, Dropdown, Modal } from 'antd';
 import { connect } from 'umi';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, HighlightOutlined, LogoutOutlined } from '@ant-design/icons';
 import { UseInfoDataType } from '@/models/data';
 import Cookies from 'js-cookie';
 import { unsetAllCookies } from '@/utils/cookie';
@@ -42,26 +42,34 @@ const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = props => {
   };
 
   const menu = (
-    <Menu style={{ width: 96, textAlign: 'center' }}>
+    <Menu style={{ width: 108, textAlign: 'center' }}>
       <Menu.Item
-        style={{ fontWeight: 700, fontSize: '16px', fontFamily: 'initial' }}
+        style={{ fontWeight: 700, fontSize: '14px', fontFamily: 'initial' }}
         onClick={() => onClickSign()}
       >
-        签名
+        <HighlightOutlined />
+        用户签名
       </Menu.Item>
+
+      <Menu.Divider />
+
       <Menu.Item
         danger
-        style={{ fontWeight: 700, fontSize: '16px', fontFamily: 'initial' }}
+        style={{ fontWeight: 700, fontSize: '14px', fontFamily: 'initial' }}
         onClick={() => onClickOut()}
       >
-        登出
+        <LogoutOutlined />
+        退出登录
       </Menu.Item>
     </Menu>
   );
 
   return (
     <div className={className}>
-      <h2 style={{ fontSize: '16px', lineHeight: '70px', color: '#39bbdb', marginRight: '16px' }}>
+      <h2
+        style={{ fontSize: '16px', lineHeight: '70px', color: '#39bbdb', marginRight: '1rem' }}
+        className="invisible-sm"
+      >
         您好,{userInfo?.name}
       </h2>
       <Dropdown overlay={menu} placement="bottomCenter">

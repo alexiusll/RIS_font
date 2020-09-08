@@ -5,9 +5,11 @@
     "build": "umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "analyze": "cross-env ANALYZE=1 umi build"
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "test": "umi test",
+    "test:all": "node ./tests/run-tests.js",
+    "test:component": "umi test ./src/components",
+    "test:coverage": "umi-test --coverage"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

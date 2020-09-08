@@ -75,7 +75,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
               <h1
                 style={{
                   fontSize: 22,
-                  width: '300px',
+                  // width: '300px',
                   color: '#39bbdb',
                   lineHeight: '70px',
                 }}
