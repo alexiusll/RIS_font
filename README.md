@@ -76,7 +76,6 @@ $ yarn start
   ],
     "fileheader.customMade": {
     // 头部注释
-
     "Descripttion": "Do not edit", // 文件创建时间(不变)
     "Author": "linkenzone", // 文件最后编辑者
     "Date": "Do not edit" // 文件最后编辑时间
