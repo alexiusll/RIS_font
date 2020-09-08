@@ -6,7 +6,8 @@
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "analyze": "cross-env ANALYZE=1 umi build"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@umijs/fabric": "^2.2.2",
+    "cross-env": "^7.0.2",
     "eslint": "^7.8.1"
   }
 }

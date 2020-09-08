@@ -1,8 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: linkenzone
- * @Date: 2020-09-04 00:13:06
--->
 # 项目通用脚手架
 
 创建方式: 
@@ -27,7 +22,7 @@ $ yarn create @umijs/umi-app
 - eslint
 - @umijs/fabric
 
-## 快速开始：
+## 常用指令：
 
 安装依赖:
 
@@ -41,8 +36,16 @@ $ yarn
 $ yarn start
 ```
 
+分析构建文件体积:
+
+```bash
+$ yarn analyze
+```
+
+
 
 ## 推荐使用的vscode插件:
+
 - Eslint
 - Prettier
 - One Dark Pro
