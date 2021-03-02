@@ -1,6 +1,6 @@
-# 项目通用脚手架
+# 医学影像系统
 
-创建方式: 
+## 创建方式: 
 
 ```bash
 $ yarn create @umijs/umi-app
@@ -9,20 +9,7 @@ $ yarn create @umijs/umi-app
 
 
 
-## 其他依赖:
-
-#### dependencies:
-
-- moment
-- js-cookie
-- @types/js-cookie
-
-#### devDependencies:
-
-- eslint
-- @umijs/fabric
-
-## 常用指令：
+## 指令：
 
 安装依赖:
 
@@ -47,9 +34,14 @@ $ yarn analyze
 ## 推荐使用的vscode插件:
 
 - Eslint
+
 - Prettier
+
 - One Dark Pro
+
 - koroFileHeader
+
+  
 
 
 ## vscode 配置文件参考:

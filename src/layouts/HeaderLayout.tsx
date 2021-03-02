@@ -18,9 +18,8 @@ import { UseInfoDataType } from '@/models/data';
 import style from './index.less';
 
 export interface BasicLayoutProps extends ProLayoutProps {
-  breadcrumbNameMap: {
-    [path: string]: MenuDataItem; // proLayout的组件
-  };
+  // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
+  breadcrumbNameMap: { [path: string]: MenuDataItem }; // proLayout的组件
   route: ProLayoutProps['route'] & {
     authority: string[];
   };
@@ -28,7 +27,7 @@ export interface BasicLayoutProps extends ProLayoutProps {
   dispatch: Dispatch;
 }
 
-const BasicLayout: React.FC<BasicLayoutProps> = props => {
+const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const {
     dispatch,
     children,
@@ -67,7 +66,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       <ProLayout
         title="临床试验管理"
         logo={logoImg}
-        menuHeaderRender={logoDom => {
+        menuHeaderRender={(logoDom) => {
           // 渲染 logo 和 title
           return (
             <>
@@ -77,7 +76,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
                   fontSize: 22,
                   // width: '300px',
                   color: '#39bbdb',
-                  lineHeight: '70px',
+                  lineHeight: '48px',
                 }}
               >
                 {title}
@@ -85,7 +84,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             </>
           );
         }}
-        layout="topmenu"
+        layout="top"
         navTheme="light"
         disableMobile
         fixSiderbar={false}

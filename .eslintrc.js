@@ -1,3 +1,9 @@
+/*
+ * @Descripttion:
+ * @Author: linkenzone
+ * @Date: 2021-03-02 11:12:47
+ */
+
 module.exports = {
   extends: [require.resolve('@umijs/fabric/dist/eslint')],
   globals: {
@@ -11,5 +17,6 @@ module.exports = {
     'no-underscore-dangle': 0,
     'import/no-unresolved': 0,
     '@typescript-eslint/naming-convention': 0,
+    '@typescript-eslint/consistent-type-imports': 0,
   },
 };

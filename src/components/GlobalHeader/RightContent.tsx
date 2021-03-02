@@ -1,3 +1,8 @@
+/*
+ * @Descripttion:
+ * @Author: linkenzone
+ * @Date: 2021-03-02 11:12:47
+ */
 // 通用的Header右侧菜单
 
 import React, { useEffect, useState } from 'react';
@@ -13,7 +18,7 @@ interface GlobalHeaderRightProps {
   onClickSign: () => void;
 }
 
-const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = props => {
+const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = (props) => {
   const { onClickSign } = props;
   const [userInfo, setUserInfo] = useState<UseInfoDataType>();
   const className = styles.right;
@@ -67,7 +72,7 @@ const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = props => {
   return (
     <div className={className}>
       <h2
-        style={{ fontSize: '16px', lineHeight: '70px', color: '#39bbdb', marginRight: '1rem' }}
+        style={{ fontSize: '16px', lineHeight: '48px', color: '#39bbdb', marginRight: '1rem' }}
         className="invisible-sm"
       >
         您好,{userInfo?.name}
