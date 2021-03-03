@@ -19,6 +19,10 @@ export default [
             component: '@/pages/index.tsx',
           },
           {
+            path: '/OfficialDemo',
+            component: '@/pages/OfficialDemo',
+          },
+          {
             component: '404',
           },
         ],
