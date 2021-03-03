@@ -90,7 +90,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         fixSiderbar={false}
         // contentWidth = 'Fluid'
         rightContentRender={() => <RightContent onClickSign={SignModal_OpenHandler} />}
-        contentStyle={{ margin: '0', backgroundColor: 'white', minHeight: 800 }}
+        contentStyle={{ margin: '0', backgroundColor: 'white' }}
         className={style.custom_layout}
       >
         {children}

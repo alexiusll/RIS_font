@@ -8,6 +8,7 @@
 import { defineConfig } from 'umi';
 import routerConfig from './routerConfig';
 import proxy from './proxy';
+import chainWebpack from './chainWebpack';
 
 // process.env包含着关于系统环境的信息
 const { REACT_APP_ENV } = process.env;
@@ -34,4 +35,6 @@ export default defineConfig({
     //hmr: true,
   },
   proxy: proxy[REACT_APP_ENV || 'dev'],
+
+  chainWebpack: chainWebpack,
 });
