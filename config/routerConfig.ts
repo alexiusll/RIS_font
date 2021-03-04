@@ -22,6 +22,17 @@ export default [
             path: '/OfficialDemo',
             component: '@/pages/OfficialDemo',
           },
+
+          {
+            path: '/OfficialDemo/VTKFilters',
+            component: '@/pages/OfficialDemo/VTKFilters',
+          },
+
+          {
+            path: '/OfficialDemo/HttpDataSetReader',
+            component: '@/pages/OfficialDemo/HttpDataSetReader',
+          },
+
           {
             component: '404',
           },

@@ -1,3 +1,8 @@
+/*
+ * @Descripttion:
+ * @Author: linkenzone
+ * @Date: 2021-03-02 11:12:47
+ */
 /**
  * 在生产环境 代理是无法生效的，所以这里没有生产环境的配置
  * The agent cannot take effect in the production environment
@@ -20,6 +25,14 @@ export default {
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',
+      },
+    },
+
+    '/git': {
+      target: 'https://github.com/',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/git': '',
       },
     },
   },
