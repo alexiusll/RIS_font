@@ -23,6 +23,7 @@ export default [
             component: '@/pages/OfficialDemo',
           },
 
+          // vtk 的演示代码
           {
             path: '/OfficialDemo/VTKFilters',
             component: '@/pages/OfficialDemo/VTKFilters',
@@ -32,6 +33,36 @@ export default [
             path: '/OfficialDemo/HttpDataSetReader',
             component: '@/pages/OfficialDemo/HttpDataSetReader',
           },
+
+          {
+            path: '/OfficialDemo/ImageSlicing',
+            component: '@/pages/OfficialDemo/ImageSlicing',
+          },
+
+          {
+            path: '/OfficialDemo/CropWidgets',
+            component: '@/pages/OfficialDemo/CropWidgets',
+          },
+
+          // ohif ui
+
+          {
+            path: '/OfficialDemo/OhifUi/',
+            component: '@/pages/OfficialDemo/OhifUi/',
+          },
+
+          {
+            path: '/OfficialDemo/OhifUi/First',
+            component: '@/pages/OfficialDemo/OhifUi/First',
+          },
+
+          // ohif viewer
+          {
+            path: '/OfficialDemo/OhifViewer',
+            component: '@/pages/OfficialDemo/OhifViewer',
+          },
+
+          // 404 代码
 
           {
             component: '404',

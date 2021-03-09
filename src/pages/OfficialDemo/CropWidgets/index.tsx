@@ -11,6 +11,10 @@ import vtkHttpDataSetReader from 'vtk.js/Sources/IO/Core/HttpDataSetReader';
 import vtkColorTransferFunction from 'vtk.js/Sources/Rendering/Core/ColorTransferFunction';
 import vtkPiecewiseFunction from 'vtk.js/Sources/Common/DataModel/PiecewiseFunction';
 
+import vtkImageCroppingWidget from 'vtk.js/Sources/Widgets/Widgets3D/ImageCroppingWidget';
+import vtkImageCropFilter from 'vtk.js/Sources/Filters/General/ImageCropFilter';
+import vtkWidgetManager from 'vtk.js/Sources/Widgets/Core/WidgetManager';
+
 import vtkColorMaps from 'vtk.js/Sources/Rendering/Core/ColorTransferFunction/ColorMaps';
 
 import { useEffect } from 'react';
@@ -30,6 +34,7 @@ const Demo = () => {
     const renderWindow = genericRenderWindow.getRenderWindow();
 
     // --- Set up the volume actor ---
+
     const actor = vtkVolume.newInstance();
     const mapper = vtkVolumeMapper.newInstance();
 
@@ -61,12 +66,30 @@ const Demo = () => {
     actor.getProperty().setRGBTransferFunction(0, lookupTable);
     actor.getProperty().setScalarOpacity(0, piecewiseFun);
 
+    // --- setup our widget manager and widget ---
+
+    const widgetManager = vtkWidgetManager.newInstance();
+    widgetManager.setRenderer(renderer);
+
+    // this is a widget factory
+    const widget = vtkImageCroppingWidget.newInstance();
+    // this is an instance of a widget associated with a renderer
+    const viewWidget = widgetManager.addWidget(widget);
+
+    // --- set up crop filter
+
+    const cropFilter = vtkImageCropFilter.newInstance();
+    // we listen to cropping widget state to inform the crop filter
+    const cropState = widget.getWidgetState().getCroppingPlanes();
+    cropState.onModified(() => cropFilter.setCroppingPlanes(cropState.getPlanes()));
+
     // --- load remote dataset ---
 
     const reader = vtkHttpDataSetReader.newInstance({ fetchGzip: true });
 
-    // wire up the reader to the mapper
-    mapper.setInputConnection(reader.getOutputPort());
+    // wire up the reader, crop filter, and mapper
+    cropFilter.setInputConnection(reader.getOutputPort());
+    mapper.setInputConnection(cropFilter.getOutputPort());
 
     reader
       .setUrl('https://kitware.github.io/vtk-js/data/volume/LIDC2.vti')
@@ -80,8 +103,17 @@ const Demo = () => {
         lookupTable.setMappingRange(...range);
         lookupTable.updateRange();
 
+        // update crop widget and filter with image info
+        const image = reader.getOutputData();
+        cropFilter.setCroppingPlanes(...image.getExtent());
+        widget.copyImageDataDescription(image);
+
         // --- Reset camera and render the scene ---
         renderer.resetCamera();
+        renderWindow.render();
+
+        // --- Enable interactive picking of widgets ---
+        widgetManager.enablePicking();
         renderWindow.render();
       });
 
