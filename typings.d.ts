@@ -20,3 +20,9 @@ declare module '@ohif/ui';
 declare module '@ohif/viewer';
 
 declare module 'react-vtk-js';
+
+declare module 'cornerstone-core';
+declare module 'cornerstone-tools';
+declare module 'cornerstone-web-image-loader';
+declare module 'hammerjs';
+declare module 'cornerstone-math';

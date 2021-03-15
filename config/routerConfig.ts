@@ -62,6 +62,12 @@ export default [
             component: '@/pages/OfficialDemo/OhifViewer',
           },
 
+          // Cornerstone Demo
+          {
+            path: '/CornerstoneDemo/First',
+            component: '@/pages/CornerstoneDemo/First',
+          },
+
           // 404 代码
 
           {
