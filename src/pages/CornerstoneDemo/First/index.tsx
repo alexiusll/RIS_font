@@ -3,7 +3,7 @@
  * @Author: linkenzone
  * @Date: 2021-03-15 11:32:19
  */
-import { Button } from 'antd';
+import { Button, Menu } from 'antd';
 
 import cornerstone from 'cornerstone-core';
 import cornerstoneMath from 'cornerstone-math';
@@ -25,8 +25,10 @@ const Demo: React.FC<{}> = () => {
   const containerRef: any = React.useRef();
 
   useEffect(() => {
-    const url =
+    let url =
       'https://rawgit.com/cornerstonejs/cornerstoneWebImageLoader/master/examples/Renal_Cell_Carcinoma.jpg';
+
+    let i = 0;
 
     const RotateTool = cornerstoneTools.RotateTool;
     const LengthTool = cornerstoneTools.LengthTool;
@@ -39,7 +41,10 @@ const Demo: React.FC<{}> = () => {
     console.log('cornerstoneTools', cornerstoneTools);
 
     cornerstone.enable(element);
-    cornerstone.loadImage(url).then(function (image: any) {
+
+    console.log('Viewports', cornerstone.getViewport(element));
+
+    cornerstone.loadImage(url).then((image: any) => {
       cornerstone.displayImage(element, image);
 
       // Adds tool to ALL currently Enabled elements
