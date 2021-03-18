@@ -5,7 +5,6 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 
- 
 import { extend } from 'umi-request';
 import { notification, message } from 'antd';
 import Cookies from 'js-cookie';
@@ -103,7 +102,7 @@ function custom_request(url: string, { method = 'GET', params = {}, data = {} })
   }
   if (!COOKIE_CONFIRM) COOKIE_CONFIRM = true; // 防止同时多次请求
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     request(prefix + url, {
       method,
       params: removeNull(params),
@@ -114,7 +113,7 @@ function custom_request(url: string, { method = 'GET', params = {}, data = {} })
         'Content-Type': 'application/json',
         Authorization: `Bearer ${Cookies.get('token')}`,
       },
-    }).then(res => {
+    }).then((res) => {
       if (res && res.code === 200) {
         // 如果post请求没有data，就返回true，以便判断generator下一步执行
         if (res.total !== undefined) {
@@ -127,7 +126,7 @@ function custom_request(url: string, { method = 'GET', params = {}, data = {} })
           message: res.msg,
         });
       }
-      resolve(); // 错误不能reject 会导致generator call函数出错
+      resolve(null); // 错误不能reject 会导致generator call函数出错
     });
   });
 }

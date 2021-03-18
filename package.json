@@ -1,4 +1,5 @@
 {
+  "name": "ris_front",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -51,7 +52,7 @@
   "devDependencies": {
     "@umijs/fabric": "^2.5.7",
     "cross-env": "^7.0.3",
-    "eslint": "^7.21.1",
+    "eslint": "^7.22.0",
     "kw-web-suite": "^11.1.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
