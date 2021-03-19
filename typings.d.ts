@@ -12,8 +12,8 @@ declare module '*.svg' {
   export default url;
 }
 
-// vtk.js 引入，避免在ts文件中报错
-declare module 'vtk.js/*';
+// 避免ts文件中报错
+// declare module 'vtk.js/*';
 
 declare module '@ohif/ui';
 

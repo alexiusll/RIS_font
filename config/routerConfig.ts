@@ -18,31 +18,31 @@ export default [
             path: '/',
             component: '@/pages/index.tsx',
           },
+
+          // vtk 的演示代码
           {
             path: '/OfficialDemo',
             component: '@/pages/OfficialDemo',
           },
+          // {
+          //   path: '/OfficialDemo/VTKFilters',
+          //   component: '@/pages/OfficialDemo/VTKFilters',
+          // },
 
-          // vtk 的演示代码
-          {
-            path: '/OfficialDemo/VTKFilters',
-            component: '@/pages/OfficialDemo/VTKFilters',
-          },
+          // {
+          //   path: '/OfficialDemo/HttpDataSetReader',
+          //   component: '@/pages/OfficialDemo/HttpDataSetReader',
+          // },
 
-          {
-            path: '/OfficialDemo/HttpDataSetReader',
-            component: '@/pages/OfficialDemo/HttpDataSetReader',
-          },
+          // {
+          //   path: '/OfficialDemo/ImageSlicing',
+          //   component: '@/pages/OfficialDemo/ImageSlicing',
+          // },
 
-          {
-            path: '/OfficialDemo/ImageSlicing',
-            component: '@/pages/OfficialDemo/ImageSlicing',
-          },
-
-          {
-            path: '/OfficialDemo/CropWidgets',
-            component: '@/pages/OfficialDemo/CropWidgets',
-          },
+          // {
+          //   path: '/OfficialDemo/CropWidgets',
+          //   component: '@/pages/OfficialDemo/CropWidgets',
+          // },
 
           // ohif ui
 
