@@ -67,6 +67,8 @@ export default defineConfig({
 
   // 配置代理 proxy 配置仅在 dev 时生效。
   proxy: proxy[REACT_APP_ENV || 'dev'],
+  // 使用 webpack 5 代替 webpack 4 进行构建。
+  webpack5: {},
   // 导入 webpack 的配置
   chainWebpack: chainWebpack,
   // 导入路由

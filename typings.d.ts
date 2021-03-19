@@ -15,14 +15,14 @@ declare module '*.svg' {
 // 避免ts文件中报错
 // declare module 'vtk.js/*';
 
-declare module '@ohif/ui';
+// declare module '@ohif/ui';
 
-declare module '@ohif/viewer';
+// declare module '@ohif/viewer';
 
-declare module 'react-vtk-js';
+// declare module 'react-vtk-js';
 
-declare module 'cornerstone-core';
-declare module 'cornerstone-tools';
-declare module 'cornerstone-web-image-loader';
-declare module 'hammerjs';
-declare module 'cornerstone-math';
+// declare module 'cornerstone-core';
+// declare module 'cornerstone-tools';
+// declare module 'cornerstone-web-image-loader';
+// declare module 'hammerjs';
+// declare module 'cornerstone-math';

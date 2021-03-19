@@ -60,8 +60,8 @@ const getBoundingBox = (context: any, textLines: any, x: any, y: any, options: a
   }
 
   const boundingBox = {
-    width: width,
-    height: height,
+    width,
+    height,
     left: x,
     top: y,
   };

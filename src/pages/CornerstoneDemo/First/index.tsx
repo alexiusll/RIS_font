@@ -28,8 +28,6 @@ const Demo: React.FC<{}> = () => {
     let url =
       'https://rawgit.com/cornerstonejs/cornerstoneWebImageLoader/master/examples/Renal_Cell_Carcinoma.jpg';
 
-    let i = 0;
-
     const RotateTool = cornerstoneTools.RotateTool;
     const LengthTool = cornerstoneTools.LengthTool;
     const PanTool = cornerstoneTools.PanTool;
