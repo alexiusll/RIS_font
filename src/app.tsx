@@ -12,6 +12,7 @@
  * TODO 获取用户信息
  */
 export async function getInitialState() {
+  console.log('生成 全局初始数据...');
   return {
     userName: '用户为 xxx',
   };

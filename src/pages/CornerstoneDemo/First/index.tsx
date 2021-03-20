@@ -12,12 +12,12 @@ import Hammer from 'hammerjs';
 
 import cornerstoneWebImageLoader from 'cornerstone-web-image-loader';
 
+import React, { useEffect } from 'react';
+
 cornerstoneTools.external.cornerstone = cornerstone;
 cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 cornerstoneTools.init();
-
-import React, { useEffect } from 'react';
 
 cornerstoneWebImageLoader.external.cornerstone = cornerstone;
 

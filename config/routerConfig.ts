@@ -24,25 +24,25 @@ export default [
             path: '/OfficialDemo',
             component: '@/pages/OfficialDemo',
           },
-          // {
-          //   path: '/OfficialDemo/VTKFilters',
-          //   component: '@/pages/OfficialDemo/VTKFilters',
-          // },
+          {
+            path: '/OfficialDemo/VTKFilters',
+            component: '@/pages/OfficialDemo/VTKFilters',
+          },
 
-          // {
-          //   path: '/OfficialDemo/HttpDataSetReader',
-          //   component: '@/pages/OfficialDemo/HttpDataSetReader',
-          // },
+          {
+            path: '/OfficialDemo/HttpDataSetReader',
+            component: '@/pages/OfficialDemo/HttpDataSetReader',
+          },
 
-          // {
-          //   path: '/OfficialDemo/ImageSlicing',
-          //   component: '@/pages/OfficialDemo/ImageSlicing',
-          // },
+          {
+            path: '/OfficialDemo/ImageSlicing',
+            component: '@/pages/OfficialDemo/ImageSlicing',
+          },
 
-          // {
-          //   path: '/OfficialDemo/CropWidgets',
-          //   component: '@/pages/OfficialDemo/CropWidgets',
-          // },
+          {
+            path: '/OfficialDemo/CropWidgets',
+            component: '@/pages/OfficialDemo/CropWidgets',
+          },
 
           // ohif ui
 

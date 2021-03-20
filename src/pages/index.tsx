@@ -3,18 +3,29 @@
  * @Author: linkenzone
  * @Date: 2021-03-02 11:12:47
  */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useModel, useAccess, Access } from 'umi';
-// import { connect } from 'umi';
+import { connect } from 'umi';
 import { Breadcrumb, Card, Row, Col, Spin } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import style from './index.less';
+
+const { NODE_ENV, REACT_APP_ENV } = process.env;
 
 export default () => {
   const { initialState, loading, refresh, setInitialState } = useModel('@@initialState');
 
   const access = useAccess(); // access 实例的成员: canReadFoo, canUpdateFoo, canDeleteFoo
   const foo = { status: 2 };
+
+  useEffect(() => {
+    console.log('NODE_ENV:', NODE_ENV);
+    console.log('REACT_APP_ENV:', REACT_APP_ENV);
+    console.log('API_URL', API_URL);
+    console.log('API_AUTH_URL', API_URL);
+    // 销毁的时候
+    return () => {};
+  }, []);
 
   return (
     <div className={style.main_body}>

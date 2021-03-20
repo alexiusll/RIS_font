@@ -1,25 +1,28 @@
 {
   "compilerOptions": {
+    "outDir": "build/dist", // 输出目录
     "target": "esnext",
     "module": "esnext",
-    // "lib": ["esnext", "dom"],
-    "moduleResolution": "node",
-    // "forceConsistentCasingInFileNames": true,
-    "suppressImplicitAnyIndexErrors": true,
-    // "noImplicitReturns": true,
-    "importHelpers": true,
+    "lib": ["esnext", "dom"], // 编译过程中需要引入的库文件的列表
+    "moduleResolution": "node", // 决定如何处理模块
+    "forceConsistentCasingInFileNames": true, // 	禁止对同一个文件的不一致的引用。
+    "suppressImplicitAnyIndexErrors": true, // 阻止--noImplicitAny对缺少索引签名的索引对象报错。
+    "noImplicitReturns": false, // 是否默认禁用 any
+    "experimentalDecorators": true, // 	启用实验性的ES装饰器
+    // "importHelpers": true, // 	从tslib导入辅助工具函数
     "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "baseUrl": "./",
-    // "skipLibCheck": true,
-    "strict": true,
-    // "allowJs": true,
+    // "esModuleInterop": true,
+    "sourceMap": true, // 生成相应的.map文件。
+    "baseUrl": ".",
+    "skipLibCheck": true, //忽略所有的声明文件（*.d.ts）的类型检查
+    "strict": true, // 	启用所有严格类型检查选项。
+    "allowJs": true, // 允许编译javascript文件
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。这并不影响代码的显示，仅为了类型检查。
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    },
-    "allowSyntheticDefaultImports": true
+    }
   },
-  "include": ["mock/**/*", "src/**/*", "config/**/*", ".umirc.ts", "typings.d.ts"]
+  "include": ["mock/**/*", "src/**/*", "config/**/*", ".umirc.ts", "typings.d.ts"],
+  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
 }

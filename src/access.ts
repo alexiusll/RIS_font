@@ -13,7 +13,7 @@
  * @param {*} initialState
  */
 export default (initialState: any) => {
-  console.log('权限管理模块初始化...');
+  console.log('生成 权限数据...');
   console.log('权限管理:initialState:', initialState);
   return {
     canReadFoo: true,
