@@ -12,69 +12,156 @@ export default [
     routes: [
       {
         path: '/',
-        component: '@/layouts/HeaderLayout',
-        routes: [
-          {
-            path: '/',
-            component: '@/pages/index.tsx',
-          },
+        component: '@/pages/index.tsx',
+      },
 
-          // vtk 的演示代码
-          {
-            path: '/OfficialDemo',
-            component: '@/pages/OfficialDemo',
-          },
-          {
-            path: '/OfficialDemo/VTKFilters',
-            component: '@/pages/OfficialDemo/VTKFilters',
-          },
+      // vtk 的演示代码
+      {
+        path: '/OfficialDemo',
+        component: '@/pages/OfficialDemo',
+      },
+      {
+        path: '/OfficialDemo/VTKFilters',
+        component: '@/pages/OfficialDemo/VTKFilters',
+      },
 
-          {
-            path: '/OfficialDemo/HttpDataSetReader',
-            component: '@/pages/OfficialDemo/HttpDataSetReader',
-          },
+      {
+        path: '/OfficialDemo/HttpDataSetReader',
+        component: '@/pages/OfficialDemo/HttpDataSetReader',
+      },
 
-          {
-            path: '/OfficialDemo/ImageSlicing',
-            component: '@/pages/OfficialDemo/ImageSlicing',
-          },
+      {
+        path: '/OfficialDemo/ImageSlicing',
+        component: '@/pages/OfficialDemo/ImageSlicing',
+      },
 
-          {
-            path: '/OfficialDemo/CropWidgets',
-            component: '@/pages/OfficialDemo/CropWidgets',
-          },
+      {
+        path: '/OfficialDemo/CropWidgets',
+        component: '@/pages/OfficialDemo/CropWidgets',
+      },
 
-          // ohif ui
+      // ohif ui
 
-          {
-            path: '/OfficialDemo/OhifUi/',
-            component: '@/pages/OfficialDemo/OhifUi/',
-          },
+      {
+        path: '/OfficialDemo/OhifUi/',
+        component: '@/pages/OfficialDemo/OhifUi/',
+      },
 
-          {
-            path: '/OfficialDemo/OhifUi/First',
-            component: '@/pages/OfficialDemo/OhifUi/First',
-          },
+      {
+        path: '/OfficialDemo/OhifUi/First',
+        component: '@/pages/OfficialDemo/OhifUi/First',
+      },
 
-          // ohif viewer
-          {
-            path: '/OfficialDemo/OhifViewer',
-            component: '@/pages/OfficialDemo/OhifViewer',
-          },
+      // ohif viewer
+      // {
+      //   path: '/OfficialDemo/OhifViewer',
+      //   component: '@/pages/OfficialDemo/OhifViewer',
+      // },
 
-          // Cornerstone Demo
-          {
-            path: '/CornerstoneDemo/First',
-            component: '@/pages/CornerstoneDemo/First',
-          },
+      // Cornerstone Demo
+      {
+        path: '/CornerstoneDemo/First',
+        component: '@/pages/CornerstoneDemo/First',
+      },
 
-          // 404 代码
+      // 测试权限系统
 
-          {
-            component: '404',
-          },
-        ],
+      {
+        path: '/admin',
+        name: 'admin',
+        component: '@/pages/admin',
+        access: 'adminRouteFilter', // 会调用 src/access.ts 中返回的 adminRouteFilter 进行鉴权
+      },
+
+      // 404 代码
+
+      {
+        component: '404',
       },
     ],
   },
 ];
+
+// old
+// export default [
+//   {
+//     path: '/',
+//     component: '@/layouts/BlankLayout',
+//     routes: [
+//       {
+//         path: '/',
+//         component: '@/layouts/HeaderLayout',
+//         routes: [
+//           {
+//             path: '/',
+//             component: '@/pages/index.tsx',
+//           },
+
+//           // vtk 的演示代码
+//           {
+//             path: '/OfficialDemo',
+//             component: '@/pages/OfficialDemo',
+//           },
+//           {
+//             path: '/OfficialDemo/VTKFilters',
+//             component: '@/pages/OfficialDemo/VTKFilters',
+//           },
+
+//           {
+//             path: '/OfficialDemo/HttpDataSetReader',
+//             component: '@/pages/OfficialDemo/HttpDataSetReader',
+//           },
+
+//           {
+//             path: '/OfficialDemo/ImageSlicing',
+//             component: '@/pages/OfficialDemo/ImageSlicing',
+//           },
+
+//           {
+//             path: '/OfficialDemo/CropWidgets',
+//             component: '@/pages/OfficialDemo/CropWidgets',
+//           },
+
+//           // ohif ui
+
+//           {
+//             path: '/OfficialDemo/OhifUi/',
+//             component: '@/pages/OfficialDemo/OhifUi/',
+//           },
+
+//           {
+//             path: '/OfficialDemo/OhifUi/First',
+//             component: '@/pages/OfficialDemo/OhifUi/First',
+//           },
+
+//           // ohif viewer
+//           // {
+//           //   path: '/OfficialDemo/OhifViewer',
+//           //   component: '@/pages/OfficialDemo/OhifViewer',
+//           // },
+
+//           // Cornerstone Demo
+//           {
+//             path: '/CornerstoneDemo/First',
+//             component: '@/pages/CornerstoneDemo/First',
+//           },
+
+//           // 测试权限系统
+
+//           {
+//             path: '/admin',
+//             name: 'admin',
+//             component: '@/pages/admin',
+//             access: 'adminRouteFilter', // 会调用 src/access.ts 中返回的 adminRouteFilter 进行鉴权
+//           },
+
+//           // 404 代码
+
+//           {
+//             component: '404',
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ];

@@ -15,9 +15,13 @@
 export default (initialState: any) => {
   console.log('生成 权限数据...');
   console.log('权限管理:initialState:', initialState);
+
+  const { isAdmin } = initialState;
+
   return {
     canReadFoo: true,
     canUpdateFoo: () => true,
     canDeleteFoo: (data: any) => data?.status < 1, // 按业务需求自己任意定义鉴权函数
+    adminRouteFilter: () => isAdmin, // 只有管理员可访问
   };
 };

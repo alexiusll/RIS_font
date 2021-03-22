@@ -4,6 +4,7 @@
  * @Date: 2021-03-02 11:12:47
  */
 import React, { useState, useEffect } from 'react';
+import { FormattedMessage } from 'umi';
 import { useModel, useAccess, Access } from 'umi';
 import { connect } from 'umi';
 import { Breadcrumb, Card, Row, Col, Spin } from 'antd';
@@ -81,6 +82,9 @@ export default () => {
           <div>Delete foo.</div>
         </Access>
       </div>
+
+      <div>国际化测试 --- 当前语言为：</div>
+      <FormattedMessage id="navbar.lang" />
     </div>
   );
 };
