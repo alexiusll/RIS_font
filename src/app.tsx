@@ -15,9 +15,9 @@ import { BasicLayoutProps, Settings as LayoutSettings } from '@ant-design/pro-la
  * TODO 获取用户信息
  */
 export async function getInitialState() {
-  console.log('生成 全局初始数据...');
+  console.log('生成全局初始数据...');
   return {
-    userName: '用户为 xxx',
+    userName: 'xxx主任',
     isAdmin: false,
   };
 }

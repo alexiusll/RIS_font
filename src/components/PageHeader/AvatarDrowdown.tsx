@@ -1,27 +1,26 @@
 /*
- * @Descripttion:
+ * @Descripttion: Do not edit
  * @Author: linkenzone
- * @Date: 2021-03-02 11:12:47
+ * @Date: 2021-03-23 16:26:57
  */
-// 通用的Header右侧菜单
-
 import React, { useEffect, useState } from 'react';
 import { Avatar, Menu, Dropdown, Modal } from 'antd';
-import { connect } from 'umi';
+import { connect, useModel } from 'umi';
 import { UserOutlined, HighlightOutlined, LogoutOutlined } from '@ant-design/icons';
 import { UseInfoDataType } from '@/models/data';
 import Cookies from 'js-cookie';
 import { unsetAllCookies } from '@/utils/cookie';
-import styles from './index.less';
 
-interface GlobalHeaderRightProps {
-  onClickSign: () => void;
+interface AvatarDrowdownProps {
+  // onClickSign: () => void;
 }
 
-const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = (props) => {
-  const { onClickSign } = props;
+const AvatarDrowdown: React.FC<AvatarDrowdownProps> = (props) => {
+  // const { onClickSign } = props;
   const [userInfo, setUserInfo] = useState<UseInfoDataType>();
-  const className = styles.right;
+
+  // 获取基础信息
+  const { initialState, loading, refresh, setInitialState } = useModel('@@initialState');
 
   // 仅在组件渲染的时候调用一次
   useEffect(() => {
@@ -47,10 +46,10 @@ const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = (props) => {
   };
 
   const menu = (
-    <Menu style={{ width: 108, textAlign: 'center' }}>
+    <Menu style={{ width: 132, textAlign: 'center' }}>
       <Menu.Item
         style={{ fontWeight: 700, fontSize: '14px', fontFamily: 'initial' }}
-        onClick={() => onClickSign()}
+        onClick={() => {}}
       >
         <HighlightOutlined />
         用户签名
@@ -70,20 +69,27 @@ const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = (props) => {
   );
 
   return (
-    <div className={className}>
-      <h2
-        style={{ fontSize: '16px', lineHeight: '48px', color: '#39bbdb', marginRight: '1rem' }}
-        className="invisible-sm"
-      >
-        您好,{userInfo?.name}
-      </h2>
-      <Dropdown overlay={menu} placement="bottomCenter">
-        <a>
-          <Avatar icon={<UserOutlined />} />
-        </a>
-      </Dropdown>
-    </div>
+    <Dropdown overlay={menu} placement="bottomCenter">
+      <div style={{ cursor: 'pointer' }}>
+        <div style={{ display: 'inline-block', textAlign: 'center', marginRight: '8px' }}>
+          <Avatar icon={<UserOutlined />} size="small" />
+        </div>
+        <div
+          style={{
+            color: '#39bbdb',
+            display: 'inline-block',
+            height: '32px',
+            verticalAlign: 'middle',
+            lineHeight: '32px',
+            fontSize: '16px',
+          }}
+          className="invisible-sm"
+        >
+          {initialState?.userName}
+        </div>
+      </div>
+    </Dropdown>
   );
 };
 
-export default connect()(GlobalHeaderRight);
+export default connect()(AvatarDrowdown);

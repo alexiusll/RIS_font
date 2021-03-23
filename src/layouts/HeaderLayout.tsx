@@ -11,7 +11,7 @@ import ProLayout, {
 } from '@ant-design/pro-layout';
 import { Link, useIntl, connect, Dispatch } from 'umi';
 import React, { useEffect, useState } from 'react';
-import RightContent from '@/components/GlobalHeader/RightContent';
+import RightContent from '@/components/PageHeader/RightContent';
 import logoImg from '@/assets/rayplus.png';
 import { UseInfoDataType } from '@/models/data';
 // import SignModal from '../components/SignModal/index';
@@ -37,7 +37,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     },
   } = props;
 
-  const [title, setTitle] = useState('临床试验样本');
+  const [title, setTitle] = useState('医学影像处理系统');
 
   const [SignModalVisible, setSignModalVisible] = useState(false);
 
@@ -57,31 +57,30 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     if (path_list[1] === 'sample') {
       setTitle('CRF详情');
     } else {
-      setTitle('临床试验样本');
+      setTitle('医学影像处理系统');
     }
   }, [props.location]);
 
   return (
     <>
       <ProLayout
-        title="临床试验管理"
+        title="医学影像处理系统"
         logo={logoImg}
         menuHeaderRender={(logoDom) => {
           // 渲染 logo 和 title
           return (
-            <>
+            <div style={{ paddingLeft: '16px' }}>
               <Link to="/">{logoDom}</Link>
               <h1
                 style={{
                   fontSize: 22,
-                  // width: '300px',
                   color: '#39bbdb',
                   lineHeight: '48px',
                 }}
               >
                 {title}
               </h1>
-            </>
+            </div>
           );
         }}
         layout="top"

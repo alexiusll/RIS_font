@@ -52,23 +52,6 @@ export default defineConfig({
     // 开启紧凑主题
     // compact: true,
   },
-  layout: {
-    // 支持任何不需要 dom 的
-    // https://procomponents.ant.design/components/layout#prolayout
-    navTheme: 'light',
-    primaryColor: '#1890ff',
-    // layout: 'top',
-    // contentWidth: 'Fluid',
-    // fixedHeader: false,
-    // fixSiderbar: true,
-    title: 'Ant Design Pro',
-    // pwa: false,
-    // iconfontUrl: '',
-    // menu: {
-    //   locale: true,
-    // },
-    // splitMenus: false,
-  },
   title: false, // 配置标题
   proxy: proxy[REACT_APP_ENV || 'dev'], // 配置代理 proxy 配置仅在 dev 时生效。
   chainWebpack: chainWebpack, // 导入 webpack 的配置

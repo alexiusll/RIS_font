@@ -6,6 +6,7 @@
  */
 
 import { extend } from 'umi-request';
+import type { ResponseError } from 'umi-request';
 import { notification, message } from 'antd';
 import Cookies from 'js-cookie';
 import { removeNull } from './util';
@@ -28,38 +29,41 @@ const codeMessage = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
 };
-const config = {
-  // mock
-  mock: 'http://39.96.191.139:3000/mock/12',
-  mock_auth: 'http://39.96.191.139:81',
-  // 测试服务器地址
-  pre: 'http://39.106.111.52:84',
-  pre_auth: 'http://39.106.111.52/api',
-  // 生产环境地址
-  prod: 'http://www.rayplus.top:84',
-  prod_auth: 'http://www.rayplus.top:81',
-};
+// 弃用
+// const config = {
+//   // mock
+//   mock: 'http://39.96.191.139:3000/mock/12',
+//   mock_auth: 'http://39.96.191.139:81',
+//   // 测试服务器地址
+//   pre: 'http://39.106.111.52:84',
+//   pre_auth: 'http://39.106.111.52/api',
+//   // 生产环境地址
+//   prod: 'http://www.rayplus.top:84',
+//   prod_auth: 'http://www.rayplus.top:81',
+// };
 // #endregion
 
 /**
  * 异常处理程序
  */
-const errorHandler = (error: { response: Response }): Response => {
+const errorHandler = (error: ResponseError) => {
   const { response } = error;
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
     const { status, url } = response;
+
     notification.error({
       message: `请求错误 ${status}: ${url}`,
       description: errorText,
     });
-  } else if (!response) {
+  }
+  if (!response) {
     notification.error({
       description: '您的网络发生异常，无法连接服务器',
       message: '网络异常',
     });
   }
-  return response;
+  throw error;
 };
 
 /**
@@ -71,22 +75,27 @@ const request = extend({
 });
 
 const { NODE_ENV } = process.env;
-const ENV = 'pre';
 
-export const post_prefix = config[ENV];
+// const ENV = 'pre';
+// export const post_prefix = config[ENV];
 
 let COOKIE_CONFIRM = true;
 
 function custom_request(url: string, { method = 'GET', params = {}, data = {} }) {
   let prefix: string;
 
+  console.log('发送请求中...');
+  console.log('url:', url, ',method:', method);
+  console.log('当前API_URL', API_URL);
+  console.log('当前API_AUTH_URL', API_AUTH_URL);
+
   if (/rbac/.test(url)) {
-    // 权限管理请求
-    prefix = NODE_ENV === 'development' ? '/rbac' : config[`${ENV}_auth`];
+    // 权限管理系统请求
+    prefix = NODE_ENV === 'development' ? '/rbac' : API_AUTH_URL;
     url = url.slice(5);
   } else {
-    // rwe请求
-    prefix = NODE_ENV === 'development' ? '/api' : config[ENV];
+    // 本系统的请求
+    prefix = NODE_ENV === 'development' ? '/api' : API_URL;
   }
 
   // 判断cookie是否失效

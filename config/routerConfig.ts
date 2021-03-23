@@ -8,7 +8,7 @@
 export default [
   {
     path: '/',
-    component: '@/layouts/BlankLayout',
+    component: '@/layouts/HeaderLayout',
     routes: [
       {
         path: '/',
