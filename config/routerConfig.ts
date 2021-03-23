@@ -15,6 +15,13 @@ export default [
         component: '@/pages/index.tsx',
       },
 
+      // 影像文件管理
+
+      {
+        path: '/ImageFileManagment',
+        component: '@/pages/ImageFileManagment',
+      },
+
       // vtk 的演示代码
       {
         path: '/OfficialDemo',

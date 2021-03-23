@@ -30,7 +30,7 @@ const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = (props) => {
 
   return (
     <div className={className}>
-      <RightToolBar bodyStyle={{ marginRight: '12px', height: '48px' }} />
+      <RightToolBar bodyStyle={{ marginRight: '36px', height: '48px', display: 'flex' }} />
 
       <AvatarDrowdown />
 

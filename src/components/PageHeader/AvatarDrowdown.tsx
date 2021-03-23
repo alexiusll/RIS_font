@@ -72,7 +72,7 @@ const AvatarDrowdown: React.FC<AvatarDrowdownProps> = (props) => {
     <Dropdown overlay={menu} placement="bottomCenter">
       <div style={{ cursor: 'pointer' }}>
         <div style={{ display: 'inline-block', textAlign: 'center', marginRight: '8px' }}>
-          <Avatar icon={<UserOutlined />} size="small" />
+          <Avatar icon={<UserOutlined />} size="default" />
         </div>
         <div
           style={{
@@ -82,6 +82,7 @@ const AvatarDrowdown: React.FC<AvatarDrowdownProps> = (props) => {
             verticalAlign: 'middle',
             lineHeight: '32px',
             fontSize: '16px',
+            fontWeight: 'bold',
           }}
           className="invisible-sm"
         >
