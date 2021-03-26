@@ -4,7 +4,7 @@
  * @Date: 2021-03-23 23:17:42
  */
 import ProTable, { ProColumns } from '@ant-design/pro-table';
-import { Button, Result } from 'antd';
+import { Button, Pagination, Result } from 'antd';
 import React from 'react';
 import { history } from 'umi';
 import style from './style.less';
@@ -139,26 +139,35 @@ const expandedRowRender = () => {
 
 const ImageFileTable: React.FC<ImageFileTableProps> = () => {
   return (
-    <ProTable<TableListItemType>
-      columns={columns}
-      request={(params, sorter, filter) => {
-        // 表单搜索项会从 params 传入，传递给后端接口。
-        console.log(params, sorter, filter);
-        return Promise.resolve({
-          data: tableListDataSource,
-          success: true,
-        });
-      }}
-      rowKey="key"
-      pagination={{
-        showQuickJumper: true,
-      }}
-      expandable={{ expandedRowRender }}
-      search={false}
-      dateFormatter="string"
-      headerTitle="影像文件管理"
-      toolBarRender={() => [<Button key="show">查看日志</Button>]}
-    />
+    <>
+      <ProTable<TableListItemType>
+        bordered // 显示边框
+        pagination={false} // 不显示自带的分页器
+        columns={columns}
+        request={(params, sorter, filter) => {
+          // 表单搜索项会从 params 传入，传递给后端接口。
+          console.log(params, sorter, filter);
+          return Promise.resolve({
+            data: tableListDataSource,
+            success: true,
+          });
+        }}
+        rowKey="key"
+        expandable={{ expandedRowRender }}
+        search={false}
+        dateFormatter="string" // 转化 moment 格式数据为特定类型，false 不做转化
+        headerTitle="影像文件管理"
+        toolBarRender={() => [<Button key="show">查看日志</Button>]}
+      />
+
+      <Pagination
+        style={{ marginTop: '18px', textAlign: 'center' }}
+        showSizeChanger
+        // onShowSizeChange={onShowSizeChange}
+        defaultCurrent={3}
+        total={500}
+      />
+    </>
   );
 };
 

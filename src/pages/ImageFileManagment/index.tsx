@@ -9,7 +9,11 @@ import { history } from 'umi';
 import ImageFileTable from './components/ImageFileTable';
 
 const ImageFileManagment: React.FC<{}> = () => {
-  return <ImageFileTable></ImageFileTable>;
+  return (
+    <div style={{ padding: '24px' }}>
+      <ImageFileTable></ImageFileTable>
+    </div>
+  );
 };
 
 export default ImageFileManagment;
