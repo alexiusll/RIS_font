@@ -10,6 +10,8 @@ import { useResizeDetector } from 'react-resize-detector';
 
 import style from './style.less';
 
+import RightToolBar from '@/components/PageHeader/RightToolBar';
+
 // 引入 样式
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -32,7 +34,12 @@ const initialLayout = [
 ];
 
 const Contents = {
-  top: <div className={`${style.layout_items_header} rgl-drag-zone`}>顶部工具栏</div>,
+  top: (
+    <>
+      <div className={`${style.layout_items_header} rgl-drag-zone`}>顶部工具栏</div>
+      <RightToolBar bodyStyle={{ marginRight: '36px', height: '48px', display: 'flex' }} />
+    </>
+  ),
   left: <div className={`${style.layout_items_header} rgl-drag-zone`}>左侧工具栏</div>,
   right: <div className={`${style.layout_items_header} rgl-drag-zone`}>右侧工具栏</div>,
   img: <div className={`${style.layout_items_header} rgl-drag-zone`}>阅片区</div>,
@@ -72,7 +79,7 @@ const Viewer: React.FC<{}> = () => {
 
   return (
     <div style={{ backgroundColor: '#1b2436' }}>
-      <div style={{ backgroundColor: 'white', padding: '8px' }}>
+      <div style={{ backgroundColor: '#1b2436', padding: '8px', color: 'white' }}>
         <div>
           顶部工具栏{' '}
           <Switch
@@ -152,7 +159,7 @@ const Viewer: React.FC<{}> = () => {
         </div>
 
         <div>
-          右侧侧工具栏{' '}
+          右侧工具栏{' '}
           <Switch
             checked={right}
             onChange={(e) => {
