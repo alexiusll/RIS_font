@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'umi';
 import { useModel, useAccess, Access } from 'umi';
 import { connect } from 'umi';
-import { Breadcrumb, Card, Row, Col, Spin } from 'antd';
+import { Breadcrumb, Card, Row, Col, Spin, DatePicker } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import style from './index.less';
 
@@ -85,6 +85,8 @@ export default () => {
 
       <div>国际化测试 --- 当前语言为：</div>
       <FormattedMessage id="navbar.lang" />
+
+      <DatePicker></DatePicker>
     </div>
   );
 };
