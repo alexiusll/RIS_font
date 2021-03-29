@@ -70,17 +70,16 @@ const AvatarDrowdown: React.FC<AvatarDrowdownProps> = (props) => {
 
   return (
     <Dropdown overlay={menu} placement="bottomCenter">
-      <div style={{ cursor: 'pointer' }}>
-        <div style={{ display: 'inline-block', textAlign: 'center', marginRight: '8px' }}>
+      <div style={{ cursor: 'pointer', display: 'flex' }}>
+        <div style={{ display: 'block', textAlign: 'center', marginRight: '8px' }}>
           <Avatar icon={<UserOutlined />} size="default" />
         </div>
         <div
           style={{
             color: '#39bbdb',
-            display: 'inline-block',
+            display: 'block',
             height: '32px',
             verticalAlign: 'middle',
-            lineHeight: '32px',
             fontSize: '16px',
             fontWeight: 'bold',
           }}

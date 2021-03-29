@@ -29,3 +29,6 @@ declare module 'cornerstone-tools';
 declare module 'cornerstone-web-image-loader';
 declare module 'hammerjs';
 declare module 'cornerstone-math';
+
+declare module 'react-grid-layout';
+declare module 'lodash';

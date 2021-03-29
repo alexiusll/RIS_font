@@ -22,6 +22,12 @@ export default [
         component: '@/pages/ImageFileManagment',
       },
 
+      // 基础阅片
+      {
+        path: '/Viewer',
+        component: '@/pages/Viewer',
+      },
+
       // vtk 的演示代码
       {
         path: '/OfficialDemo',
