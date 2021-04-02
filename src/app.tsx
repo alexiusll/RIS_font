@@ -7,6 +7,8 @@
 import React from 'react';
 import { BasicLayoutProps, Settings as LayoutSettings } from '@ant-design/pro-layout';
 
+import initCornerstone from './utils/initCornerstone';
+
 /**
  * 参考 https://umijs.org/zh-CN/plugins/plugin-initial-state
  * 参考 https://beta-pro.ant.design/docs/initial-state-cn
@@ -15,7 +17,10 @@ import { BasicLayoutProps, Settings as LayoutSettings } from '@ant-design/pro-la
  * TODO 获取用户信息
  */
 export async function getInitialState() {
+  initCornerstone();
+
   console.log('生成全局初始数据...');
+
   return {
     userName: 'xxx主任',
     isAdmin: false,

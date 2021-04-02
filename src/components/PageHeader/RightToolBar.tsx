@@ -65,7 +65,7 @@ const RightToolBar: React.FC<RightToolBarProps> = (props) => {
 
   return (
     <div style={bodyStyle}>
-      <ToolButton>
+      {/* <ToolButton>
         <UploadOutlined style={{ fontSize: '28px' }} />
       </ToolButton>
 
@@ -88,7 +88,7 @@ const RightToolBar: React.FC<RightToolBarProps> = (props) => {
 
       <ToolButton>
         <SettingOutlined style={{ fontSize: '28px' }} />
-      </ToolButton>
+      </ToolButton> */}
 
       <ToolButton>
         <HomeOutlined style={{ fontSize: '28px' }} />

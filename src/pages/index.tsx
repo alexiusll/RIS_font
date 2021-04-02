@@ -11,6 +11,8 @@ import { Breadcrumb, Card, Row, Col, Spin, DatePicker } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import style from './index.less';
 
+import ImgViewer from './Viewer/ImgViewer';
+
 const { NODE_ENV, REACT_APP_ENV } = process.env;
 
 export default () => {
@@ -87,6 +89,10 @@ export default () => {
       <FormattedMessage id="navbar.lang" />
 
       <DatePicker></DatePicker>
+
+      <div className="container">
+        <ImgViewer />
+      </div>
     </div>
   );
 };

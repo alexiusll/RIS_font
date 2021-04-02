@@ -12,6 +12,8 @@ import style from './style.less';
 
 import RightToolBar from '@/components/PageHeader/RightToolBar';
 
+import ImgViewer from './ImgViewer';
+
 // 引入 样式
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -42,7 +44,12 @@ const Contents = {
   ),
   left: <div className={`${style.layout_items_header} rgl-drag-zone`}>左侧工具栏</div>,
   right: <div className={`${style.layout_items_header} rgl-drag-zone`}>右侧工具栏</div>,
-  img: <div className={`${style.layout_items_header} rgl-drag-zone`}>阅片区</div>,
+  img: (
+    <>
+      <div className={`${style.layout_items_header} rgl-drag-zone`}>阅片区</div>
+      <ImgViewer />
+    </>
+  ),
 };
 
 const Viewer: React.FC<{}> = () => {
@@ -61,6 +68,13 @@ const Viewer: React.FC<{}> = () => {
     // 销毁的时候
     return () => {};
   }, []);
+
+  useEffect(() => {
+    // console.log('Viewer: width:', width);
+    // console.log('Viewer: height:', height);
+    // 销毁的时候
+    return () => {};
+  }, [width, height]);
 
   const generateDOM = () => {
     if (!layouts) return <></>;
@@ -118,7 +132,7 @@ const Viewer: React.FC<{}> = () => {
                 };
               }
 
-              console.log('_layouts', _layouts);
+              // console.log('_layouts', _layouts);
 
               setLayouts(_layouts);
             }}
@@ -151,7 +165,7 @@ const Viewer: React.FC<{}> = () => {
                 };
               }
 
-              console.log('_layouts', _layouts);
+              // console.log('_layouts', _layouts);
 
               setLayouts(_layouts);
             }}
@@ -184,7 +198,7 @@ const Viewer: React.FC<{}> = () => {
                 };
               }
 
-              console.log('_layouts', _layouts);
+              // console.log('_layouts', _layouts);
 
               setLayouts(_layouts);
             }}
@@ -214,7 +228,7 @@ const Viewer: React.FC<{}> = () => {
           }}
           resizeHandles={['se']}
           resizeHandle={(resizeHandleAxis: any) => {
-            console.log('resizeHandleAxis', resizeHandleAxis);
+            // console.log('resizeHandleAxis', resizeHandleAxis);
             if (resizeHandleAxis === 'e') {
               return (
                 <div
