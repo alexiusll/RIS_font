@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'umi';
 import { useModel, useAccess, Access } from 'umi';
 import { connect } from 'umi';
-import { Breadcrumb, Card, Row, Col, Spin, DatePicker } from 'antd';
+import { Breadcrumb, Card, Row, Col, Spin, DatePicker, Button } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import style from './index.less';
 
@@ -21,6 +21,8 @@ export default () => {
   const access = useAccess(); // access 实例的成员: canReadFoo, canUpdateFoo, canDeleteFoo
   const foo = { status: 2 };
 
+  const [count, setCount] = useState(1);
+
   useEffect(() => {
     console.log('NODE_ENV:', NODE_ENV);
     console.log('REACT_APP_ENV:', REACT_APP_ENV);
@@ -29,6 +31,15 @@ export default () => {
     // 销毁的时候
     return () => {};
   }, []);
+
+  useEffect(() => {
+    console.log('count:', count);
+
+    // setCount(count + 1);
+
+    // 销毁的时候
+    return () => {};
+  }, [count]);
 
   return (
     <div className={style.main_body}>
@@ -90,8 +101,18 @@ export default () => {
 
       <DatePicker></DatePicker>
 
-      <div className="container">
+      {/* <div className="container">
         <ImgViewer />
+      </div> */}
+
+      <div>
+        <Button
+          onClick={() => {
+            setCount(count + 1);
+          }}
+        >
+          {count}
+        </Button>
       </div>
     </div>
   );

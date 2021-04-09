@@ -10,7 +10,7 @@ import { useResizeDetector } from 'react-resize-detector';
 
 import style from './style.less';
 
-import RightToolBar from '@/components/PageHeader/RightToolBar';
+import TopToolbar from './TopToolbar';
 
 import ImgViewer from './ImgViewer';
 
@@ -30,16 +30,16 @@ const ResponsiveGridLayout = Responsive;
  */
 const initialLayout = [
   { i: 'top', x: 0, y: 0, w: 12, h: 1, static: true, resizeHandles: [] },
-  { i: 'left', x: 0, y: 1, w: 1, h: 10, resizeHandles: ['e', 'se'] },
-  { i: 'right', x: 11, y: 1, w: 1, h: 10 },
-  { i: 'img', x: 1, y: 1, w: 10, h: 10 },
+  { i: 'left', x: 0, y: 1, w: 1, h: 8 },
+  { i: 'right', x: 11, y: 1, w: 2, h: 8 },
+  { i: 'img', x: 1, y: 1, w: 9, h: 8 },
 ];
 
 const Contents = {
   top: (
     <>
       <div className={`${style.layout_items_header} rgl-drag-zone`}>顶部工具栏</div>
-      <RightToolBar bodyStyle={{ marginRight: '36px', height: '48px', display: 'flex' }} />
+      <TopToolbar />
     </>
   ),
   left: <div className={`${style.layout_items_header} rgl-drag-zone`}>左侧工具栏</div>,
@@ -52,15 +52,11 @@ const Contents = {
   ),
 };
 
-const Viewer: React.FC<{}> = () => {
+const Viewer: React.FC<unknown> = () => {
   const [layouts, setLayouts] = useState<any>(undefined);
-
-  const [top, setTop] = useState(true);
-  const [left, setLeft] = useState(true);
-  const [right, setRight] = useState(true);
-
+  // 布局的开启状态
+  const [layoutState, setLayoutState] = useState({ top: true, left: true, right: true });
   const [currentBreakpoint, setCurrentBreakpoint] = useState('lg');
-
   const { width, height, ref } = useResizeDetector();
 
   useEffect(() => {
@@ -78,7 +74,6 @@ const Viewer: React.FC<{}> = () => {
 
   const generateDOM = () => {
     if (!layouts) return <></>;
-
     return _.map(layouts[currentBreakpoint], (item: any) => {
       return (
         <div
@@ -91,50 +86,53 @@ const Viewer: React.FC<{}> = () => {
     });
   };
 
+  /**
+   * @description: 切换layout的关闭，开启状态
+   * @Param:
+   * @param {boolean} state
+   * @param {any} layout
+   * @param {boolean} top 是否从顶部插入？
+   */
+  const SwitchLayout = (state: boolean, layout: any, top?: boolean) => {
+    let _layouts;
+    if (state) {
+      if (top) {
+        for (const item of layouts[currentBreakpoint]) {
+          if (item.y === 0) {
+            item.y += 1;
+          }
+        }
+      }
+      _layouts = {
+        ...layouts,
+        [currentBreakpoint]: [...layouts[currentBreakpoint], layout],
+      };
+    } else {
+      if (top) {
+        for (const item of layouts[currentBreakpoint]) {
+          if (item.y === 1) {
+            item.y += -1;
+          }
+        }
+      }
+      _layouts = {
+        ...layouts,
+        [currentBreakpoint]: layouts[currentBreakpoint].filter(({ i }: any) => i !== layout.i),
+      };
+    }
+    setLayoutState({ ...layoutState, [layout.i]: state });
+    setLayouts(_layouts);
+  };
+
   return (
     <div style={{ backgroundColor: '#1b2436' }}>
-      <div style={{ backgroundColor: '#1b2436', padding: '8px', color: 'white' }}>
+      {/* <div style={{ backgroundColor: '#1b2436', padding: '8px', color: 'white' }}>
         <div>
           顶部工具栏{' '}
           <Switch
-            checked={top}
+            checked={layoutState.top}
             onChange={(e) => {
-              setTop(e);
-
-              let _layouts;
-
-              if (e) {
-                for (const item of layouts[currentBreakpoint]) {
-                  if (item.y === 0) {
-                    item.y += 1;
-                  }
-                }
-
-                _layouts = {
-                  ...layouts,
-                  [currentBreakpoint]: [
-                    ...layouts[currentBreakpoint],
-                    { i: 'top', x: 0, y: 0, w: 12, h: 1, static: true, resizeHandles: [] },
-                  ],
-                };
-              } else {
-                for (const item of layouts[currentBreakpoint]) {
-                  if (item.y === 1) {
-                    item.y -= 1;
-                  }
-                }
-
-                _layouts = {
-                  ...layouts,
-                  [currentBreakpoint]: layouts[currentBreakpoint].filter(
-                    ({ i }: any) => i !== 'top',
-                  ),
-                };
-              }
-
-              // console.log('_layouts', _layouts);
-
-              setLayouts(_layouts);
+              SwitchLayout(e, initialLayout[0], true);
             }}
           />
         </div>
@@ -142,32 +140,9 @@ const Viewer: React.FC<{}> = () => {
         <div>
           左侧工具栏{' '}
           <Switch
-            checked={left}
+            checked={layoutState.left}
             onChange={(e) => {
-              setLeft(e);
-
-              let _layouts;
-
-              if (e) {
-                _layouts = {
-                  ...layouts,
-                  [currentBreakpoint]: [
-                    ...layouts[currentBreakpoint],
-                    { i: 'left', x: 0, y: 1, w: 1, h: 10, resizeHandles: ['e', 'se'] },
-                  ],
-                };
-              } else {
-                _layouts = {
-                  ...layouts,
-                  [currentBreakpoint]: layouts[currentBreakpoint].filter(
-                    ({ i }: any) => i !== 'left',
-                  ),
-                };
-              }
-
-              // console.log('_layouts', _layouts);
-
-              setLayouts(_layouts);
+              SwitchLayout(e, initialLayout[1]);
             }}
           />
         </div>
@@ -175,36 +150,13 @@ const Viewer: React.FC<{}> = () => {
         <div>
           右侧工具栏{' '}
           <Switch
-            checked={right}
+            checked={layoutState.right}
             onChange={(e) => {
-              setRight(e);
-
-              let _layouts;
-
-              if (e) {
-                _layouts = {
-                  ...layouts,
-                  [currentBreakpoint]: [
-                    ...layouts[currentBreakpoint],
-                    { i: 'right', x: 11, y: 1, w: 1, h: 10 },
-                  ],
-                };
-              } else {
-                _layouts = {
-                  ...layouts,
-                  [currentBreakpoint]: layouts[currentBreakpoint].filter(
-                    ({ i }: any) => i !== 'right',
-                  ),
-                };
-              }
-
-              // console.log('_layouts', _layouts);
-
-              setLayouts(_layouts);
+              SwitchLayout(e, initialLayout[2]);
             }}
           />
         </div>
-      </div>
+      </div> */}
 
       <div style={{ padding: '8px' }} ref={ref}>
         <ResponsiveGridLayout

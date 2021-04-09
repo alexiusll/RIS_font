@@ -57,7 +57,7 @@ const ImgViewer: React.FC<{}> = () => {
   ];
 
   return (
-    <div style={{ display: 'flex', height: 'calc(100% - 84px)' }} ref={ref}>
+    <div style={{ display: 'flex', height: 'calc(100% - 72px)' }} ref={ref}>
       <CornerstoneViewport
         tools={tools}
         imageIds={imageIds}
