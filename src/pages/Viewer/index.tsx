@@ -5,35 +5,16 @@
  */
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import { Responsive, WidthProvider } from 'react-grid-layout';
+import { Responsive } from 'react-grid-layout';
 import { useResizeDetector } from 'react-resize-detector';
-
+import { Button, Switch } from 'antd';
 import style from './style.less';
-
 import TopToolbar from './TopToolbar';
-
 import ImgViewer from './ImgViewer';
-
+import LeftToolbar from './LeftToolbar';
 // 引入 样式
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-
-import { Button, Switch } from 'antd';
-
-// const ResponsiveGridLayout = WidthProvider(Responsive);
-
-const ResponsiveGridLayout = Responsive;
-
-/**
- * @description: 初始布局
- * @Param:
- */
-const initialLayout = [
-  { i: 'top', x: 0, y: 0, w: 12, h: 1, static: true, resizeHandles: [] },
-  { i: 'left', x: 0, y: 1, w: 1, h: 8 },
-  { i: 'right', x: 11, y: 1, w: 2, h: 8 },
-  { i: 'img', x: 1, y: 1, w: 9, h: 8 },
-];
 
 const Contents = {
   top: (
@@ -42,7 +23,12 @@ const Contents = {
       <TopToolbar />
     </>
   ),
-  left: <div className={`${style.layout_items_header} rgl-drag-zone`}>左侧工具栏</div>,
+  left: (
+    <>
+      <div className={`${style.layout_items_header} rgl-drag-zone`}>左侧工具栏</div>
+      <LeftToolbar />
+    </>
+  ),
   right: <div className={`${style.layout_items_header} rgl-drag-zone`}>右侧工具栏</div>,
   img: (
     <>
@@ -52,7 +38,12 @@ const Contents = {
   ),
 };
 
-const Viewer: React.FC<unknown> = () => {
+type ViewerProps = {
+  initialLayout?: any;
+};
+
+const Viewer: React.FC<ViewerProps> = (props) => {
+  const { initialLayout } = props;
   const [layouts, setLayouts] = useState<any>(undefined);
   // 布局的开启状态
   const [layoutState, setLayoutState] = useState({ top: true, left: true, right: true });
@@ -61,17 +52,19 @@ const Viewer: React.FC<unknown> = () => {
 
   useEffect(() => {
     setLayouts({ lg: initialLayout });
-    // 销毁的时候
     return () => {};
-  }, []);
+  }, [initialLayout]);
 
   useEffect(() => {
     // console.log('Viewer: width:', width);
     // console.log('Viewer: height:', height);
-    // 销毁的时候
     return () => {};
   }, [width, height]);
 
+  /**
+   * @description: 生成布局中的 Dow 元素
+   * @Param:
+   */
   const generateDOM = () => {
     if (!layouts) return <></>;
     return _.map(layouts[currentBreakpoint], (item: any) => {
@@ -159,7 +152,7 @@ const Viewer: React.FC<unknown> = () => {
       </div> */}
 
       <div style={{ padding: '8px' }} ref={ref}>
-        <ResponsiveGridLayout
+        <Responsive
           width={width || 0}
           className="layout"
           layouts={layouts}
@@ -193,10 +186,19 @@ const Viewer: React.FC<unknown> = () => {
           }}
         >
           {generateDOM()}
-        </ResponsiveGridLayout>
+        </Responsive>
       </div>
     </div>
   );
+};
+
+Viewer.defaultProps = {
+  initialLayout: [
+    { i: 'top', x: 0, y: 0, w: 12, h: 1, static: true, resizeHandles: [] },
+    { i: 'left', x: 0, y: 1, w: 1, h: 8 },
+    { i: 'right', x: 11, y: 1, w: 2, h: 8 },
+    { i: 'img', x: 1, y: 1, w: 9, h: 8 },
+  ],
 };
 
 export default Viewer;

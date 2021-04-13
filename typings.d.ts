@@ -33,3 +33,5 @@ declare module 'cornerstone-math';
 
 declare module 'react-grid-layout';
 declare module 'lodash';
+
+declare module 'react-cornerstone-viewport';

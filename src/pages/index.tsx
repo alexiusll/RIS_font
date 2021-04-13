@@ -28,6 +28,19 @@ export default () => {
     console.log('REACT_APP_ENV:', REACT_APP_ENV);
     console.log('API_URL', API_URL);
     console.log('API_AUTH_URL', API_URL);
+
+    const tmp = undefined;
+
+    console.log('tmp === undefined', tmp === undefined);
+    console.log('tmp === null', tmp === null);
+    console.log('tmp ?? false', tmp ?? false);
+
+    const tmp2 = null;
+
+    console.log('tmp2 === undefined', tmp2 === undefined);
+    console.log('tmp2 === null', tmp2 === null);
+    console.log('tmp2 ?? false', tmp2 ?? false);
+
     // 销毁的时候
     return () => {};
   }, []);
