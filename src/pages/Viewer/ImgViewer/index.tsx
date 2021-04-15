@@ -3,21 +3,36 @@
  * @Author: linkenzone
  * @Date: 2021-04-02 14:41:11
  */
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import CornerstoneViewport from 'react-cornerstone-viewport';
-
 import { useResizeDetector } from 'react-resize-detector';
+import { connect, Dispatch } from 'umi';
+import { StateType } from '../model';
 
-const ImgViewer: React.FC<{}> = () => {
+type ImgViewerProps = {
+  dispatch: Dispatch;
+  ImgViewer2D: StateType;
+};
+
+const ImgViewer: React.FC<ImgViewerProps> = (props) => {
+  const { ImgViewer2D } = props;
   const { width, height, ref } = useResizeDetector();
+  const [GridLayoutItems, setGridLayoutItems] = useState([[1, 1]]);
 
   useEffect(() => {
     console.log('ImgViewer: width:', width);
     console.log('ImgViewer: height:', height);
+
     // 销毁的时候
     return () => {};
   }, [width, height]);
+
+  useEffect(() => {
+    console.log('ImgViewer2D:', ImgViewer2D);
+
+    // 生成坐标
+    return () => {};
+  }, [ImgViewer2D]);
 
   const tools = [
     // Mouse
@@ -59,14 +74,22 @@ const ImgViewer: React.FC<{}> = () => {
 
   return (
     <div style={{ display: 'flex', height: 'calc(100% - 72px)' }} ref={ref}>
-      <CornerstoneViewport
-        tools={tools}
-        imageIds={imageIds}
-        style={{ width, height, flexGrow: '1' }}
-        resizeRefreshMode="throttle"
-      />
+      {GridLayoutItems.map((viewportIndex) => (
+        <CornerstoneViewport
+          tools={tools}
+          imageIds={imageIds}
+          style={{ width, height, flexGrow: '1' }}
+          resizeRefreshMode="throttle"
+        />
+      ))}
     </div>
   );
 };
 
-export default ImgViewer;
+const mapStateToProps = ({ ImgViewer2D }: { ImgViewer2D: StateType }) => {
+  return {
+    ImgViewer2D,
+  };
+};
+
+export default connect(mapStateToProps)(ImgViewer);
