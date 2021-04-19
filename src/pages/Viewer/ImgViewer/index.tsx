@@ -6,8 +6,14 @@
 import React, { useEffect, useState } from 'react';
 import CornerstoneViewport from 'react-cornerstone-viewport';
 import { useResizeDetector } from 'react-resize-detector';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../model';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { StateType } from '../model';
+import style from './style.less';
+
+import cornerstoneTools from 'cornerstone-tools';
+
+import HelloWorldTool from '@/lib/cornerstoneTools/HelloWorldTool';
 
 type ImgViewerProps = {
   dispatch: Dispatch;
@@ -17,7 +23,9 @@ type ImgViewerProps = {
 const ImgViewer: React.FC<ImgViewerProps> = (props) => {
   const { ImgViewer2D } = props;
   const { width, height, ref } = useResizeDetector();
-  const [GridLayoutItems, setGridLayoutItems] = useState([[1, 1]]);
+  const [GridLayoutItems, setGridLayoutItems] = useState<number[]>([]);
+  const [activeViewportIndex, setActiveViewportIndex] = useState(1);
+  const [activeTool, setActiveTool] = useState('Wwwc');
 
   useEffect(() => {
     console.log('ImgViewer: width:', width);
@@ -33,6 +41,22 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
     // 生成坐标
     return () => {};
   }, [ImgViewer2D]);
+
+  useEffect(() => {
+    const _nums = ImgViewer2D.GridLayout.x * ImgViewer2D.GridLayout.y;
+
+    const _list = [];
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 1; i <= _nums; i++) {
+      _list.push(i);
+    }
+
+    setGridLayoutItems(_list);
+
+    // 生成坐标
+    return () => {};
+  }, [ImgViewer2D.GridLayout]);
 
   const tools = [
     // Mouse
@@ -51,6 +75,20 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
       mode: 'active',
       modeOptions: { mouseButtonMask: 4 },
     },
+    'Length',
+    'Angle',
+    'Bidirectional',
+    'FreehandRoi',
+    'Eraser',
+
+    // 自定义工具
+    {
+      name: 'HelloWorld',
+      mode: 'active',
+      toolClass: HelloWorldTool,
+      props: { name: 'HelloWorld' },
+    },
+
     // Scroll
     { name: 'StackScrollMouseWheel', mode: 'active' },
     // Touch
@@ -73,13 +111,39 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
   ];
 
   return (
-    <div style={{ display: 'flex', height: 'calc(100% - 72px)' }} ref={ref}>
+    <div style={{ display: 'flex', height: 'calc(100% - 72px)', flexWrap: 'wrap' }} ref={ref}>
       {GridLayoutItems.map((viewportIndex) => (
         <CornerstoneViewport
+          key={viewportIndex}
           tools={tools}
           imageIds={imageIds}
-          style={{ width, height, flexGrow: '1' }}
+          activeTool={ImgViewer2D?.activeTool}
+          style={{
+            minWidth: (width ?? 0) / ImgViewer2D.GridLayout.x,
+            height: (height ?? 0) / ImgViewer2D.GridLayout.y,
+            flex: '1',
+          }}
+          className={
+            GridLayoutItems.length > 1 && activeViewportIndex === viewportIndex
+              ? style.viewport_wrapper_active
+              : style.viewport_wrapper
+          }
+          setViewportActive={() => {
+            setActiveViewportIndex(viewportIndex);
+          }}
           resizeRefreshMode="throttle"
+
+          // onElementEnabled={elementEnabledEvt => {
+          //   const cornerstoneElement = elementEnabledEvt.detail.element;
+
+          //   // Wait for image to render, then invert it
+          //   cornerstoneElement.addEventListener(
+          //     'cornerstoneimagerendered',
+          //     imageRenderedEvent => {
+          //       cornerstoneTools.addToolForElement(cornerstoneElement, HelloWorldMouseTool);
+          //     }
+          //   );
+          // }}
         />
       ))}
     </div>

@@ -7,6 +7,7 @@ import { Effect, Reducer } from 'umi';
 
 export type StateType = {
   GridLayout: { x: number; y: number };
+  activeTool: string;
 };
 
 /**
@@ -14,6 +15,7 @@ export type StateType = {
  */
 const initialState = {
   GridLayout: { x: 1, y: 1 },
+  activeTool: 'Wwwc',
 };
 
 export interface ModelType {

@@ -13,26 +13,20 @@ import {
 import { Button, Dropdown, Menu, Popover } from 'antd';
 import React, { useState, useEffect } from 'react';
 import style from './style.less';
+import ConnectedToolButton from './ConnectedToolButton';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { StateType } from '../model';
 
-const LeftToolButton: React.FC<{ onClick?: () => void }> = (props) => {
-  const { children, onClick } = props;
-  return (
-    <Button
-      type="link"
-      style={{ height: '48px', width: '48px', display: 'inline-block', padding: '0', margin: '0' }}
-      onClick={onClick}
-    >
-      {children}
-    </Button>
-  );
-};
-
-const LayoutSettingButton: React.FC<{}> = (props) => {
-  const { onClick } = props;
+const LayoutSettingButton: React.FC<{ dispatch: Dispatch }> = (props) => {
+  const { onClick, dispatch } = props;
   const [viewLayoutHighLight, setViewLayoutHighLight] = useState({ x: 0, y: 0 });
 
   return (
-    <LeftToolButton>
+    <Button
+      type="link"
+      style={{ height: '48px', width: '48px', display: 'block', padding: '0', margin: '0' }}
+    >
       <Popover
         placement="right"
         content={() => {
@@ -72,6 +66,12 @@ const LayoutSettingButton: React.FC<{}> = (props) => {
                       onMouseLeave={() => {
                         setViewLayoutHighLight({ x: 0, y: 0 });
                       }}
+                      onClick={() => {
+                        dispatch({
+                          type: 'ImgViewer2D/save',
+                          payload: { GridLayout: { x: item.x, y: item.y } },
+                        });
+                      }}
                     ></button>
                   );
                 })}
@@ -83,18 +83,41 @@ const LayoutSettingButton: React.FC<{}> = (props) => {
       >
         <TableOutlined style={{ fontSize: '28px' }} />
       </Popover>
-    </LeftToolButton>
+    </Button>
   );
 };
 
-const LeftToolbar: React.FC<unknown> = () => {
-  const [viewLayout, setViewLayout] = useState({ x: 1, y: 1 });
+type LeftToolbarProps = {
+  dispatch: Dispatch;
+  ImgViewer2D: StateType;
+};
+
+const LeftToolbar: React.FC<LeftToolbarProps> = (props) => {
+  const { ImgViewer2D, dispatch } = props;
 
   return (
-    <div style={{ display: 'flex' }}>
-      <LayoutSettingButton />
+    <div>
+      <LayoutSettingButton dispatch={dispatch} />
+      <span style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+        <ConnectedToolButton toolName="Wwwc" />
+        <ConnectedToolButton toolName="Zoom" />
+        <ConnectedToolButton toolName="Pan" />
+        <ConnectedToolButton toolName="Length" />
+        <ConnectedToolButton toolName="Angle" />
+        <ConnectedToolButton toolName="Bidirectional" />
+        <ConnectedToolButton toolName="FreehandRoi" />
+        <ConnectedToolButton toolName="Eraser" />
+
+        <ConnectedToolButton toolName="HelloWorld" />
+      </span>
     </div>
   );
 };
 
-export default LeftToolbar;
+const mapStateToProps = ({ ImgViewer2D }: { ImgViewer2D: StateType }) => {
+  return {
+    ImgViewer2D,
+  };
+};
+
+export default connect(mapStateToProps)(LeftToolbar);

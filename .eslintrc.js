@@ -17,6 +17,5 @@ module.exports = {
     'no-underscore-dangle': 0,
     'import/no-unresolved': 0,
     '@typescript-eslint/naming-convention': 0,
-    '@typescript-eslint/consistent-type-imports': 0,
   },
 };

@@ -11,14 +11,25 @@ import cornerstoneMath from 'cornerstone-math';
 import cornerstoneTools from 'cornerstone-tools';
 import Hammer from 'hammerjs';
 
+import HelloWorldMouseTool from '@/lib/cornerstoneTools/HelloWorldTool';
+
+function evenMoreHelloWorld() {
+  // Note this would need to be called from somewhere
+  // Within the Tool's implementation.
+  console.log('Hello World from the even more hello world mixin!');
+}
+
 const initCornerstone = () => {
   console.log('初始化 initCornerstone ...');
   // Cornertone Tools
   cornerstoneTools.external.cornerstone = cornerstone;
   cornerstoneTools.external.Hammer = Hammer;
   cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
-  //
+
+  // cornerstoneTools 初始化
   cornerstoneTools.init();
+  // 增加自定义工具
+
   // Preferences
   const fontFamily =
     'Work Sans, Roboto, OpenSans, HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif';
@@ -41,6 +52,7 @@ const initCornerstone = () => {
       },
     },
   });
+
   // Debug
   window.cornerstone = cornerstone;
   window.cornerstoneTools = cornerstoneTools;
