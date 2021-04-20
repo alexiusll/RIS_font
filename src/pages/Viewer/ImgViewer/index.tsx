@@ -21,7 +21,7 @@ type ImgViewerProps = {
 };
 
 const ImgViewer: React.FC<ImgViewerProps> = (props) => {
-  const { ImgViewer2D } = props;
+  const { ImgViewer2D, dispatch } = props;
   const { width, height, ref } = useResizeDetector();
   const [GridLayoutItems, setGridLayoutItems] = useState<number[]>([]);
   const [activeViewportIndex, setActiveViewportIndex] = useState(1);
@@ -132,18 +132,22 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
             setActiveViewportIndex(viewportIndex);
           }}
           resizeRefreshMode="throttle"
+          onElementEnabled={(elementEnabledEvt: any) => {
+            const cornerstoneElement = elementEnabledEvt.detail.element;
 
-          // onElementEnabled={elementEnabledEvt => {
-          //   const cornerstoneElement = elementEnabledEvt.detail.element;
+            dispatch({
+              type: 'ImgViewer2D/save',
+              payload: { cornerstoneElement },
+            });
 
-          //   // Wait for image to render, then invert it
-          //   cornerstoneElement.addEventListener(
-          //     'cornerstoneimagerendered',
-          //     imageRenderedEvent => {
-          //       cornerstoneTools.addToolForElement(cornerstoneElement, HelloWorldMouseTool);
-          //     }
-          //   );
-          // }}
+            // Wait for image to render, then invert it
+            // cornerstoneElement.addEventListener(
+            //   'cornerstoneimagerendered',
+            //   (imageRenderedEvent) => {
+            //     cornerstoneTools.addToolForElement(cornerstoneElement, HelloWorldMouseTool);
+            //   },
+            // );
+          }}
         />
       ))}
     </div>

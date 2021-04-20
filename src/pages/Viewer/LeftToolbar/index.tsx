@@ -18,6 +18,8 @@ import type { Dispatch } from 'umi';
 import { connect } from 'umi';
 import type { StateType } from '../model';
 
+import cornerstone from 'cornerstone-core';
+
 const LayoutSettingButton: React.FC<{ dispatch: Dispatch }> = (props) => {
   const { onClick, dispatch } = props;
   const [viewLayoutHighLight, setViewLayoutHighLight] = useState({ x: 0, y: 0 });
@@ -97,6 +99,14 @@ const LeftToolbar: React.FC<LeftToolbarProps> = (props) => {
 
   return (
     <div>
+      <Button
+        onClick={() => {
+          console.log('cornerstoneElement', ImgViewer2D.cornerstoneElement);
+          cornerstone.reset(ImgViewer2D?.cornerstoneElement);
+        }}
+      >
+        重置
+      </Button>
       <LayoutSettingButton dispatch={dispatch} />
       <span style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         <ConnectedToolButton toolName="Wwwc" />

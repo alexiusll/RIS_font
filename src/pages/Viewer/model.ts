@@ -3,11 +3,13 @@
  * @Author: linkenzone
  * @Date: 2021-04-14 17:25:05
  */
-import { Effect, Reducer } from 'umi';
+import type { Reducer } from 'umi';
+import { Effect } from 'umi';
 
 export type StateType = {
   GridLayout: { x: number; y: number };
   activeTool: string;
+  cornerstoneElement: any;
 };
 
 /**
@@ -16,6 +18,7 @@ export type StateType = {
 const initialState = {
   GridLayout: { x: 1, y: 1 },
   activeTool: 'Wwwc',
+  cornerstoneElement: null,
 };
 
 export interface ModelType {
