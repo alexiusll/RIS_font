@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'umi';
 import { useModel, useAccess, Access } from 'umi';
 import { connect } from 'umi';
+import { useIntl } from 'umi';
 import { Breadcrumb, Card, Row, Col, Spin, DatePicker, Button } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import style from './index.less';
@@ -18,28 +19,31 @@ const { NODE_ENV, REACT_APP_ENV } = process.env;
 export default () => {
   const { initialState, loading, refresh, setInitialState } = useModel('@@initialState');
 
+  // 国际化配置
+  const intl = useIntl();
+
   const access = useAccess(); // access 实例的成员: canReadFoo, canUpdateFoo, canDeleteFoo
   const foo = { status: 2 };
 
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    console.log('NODE_ENV:', NODE_ENV);
-    console.log('REACT_APP_ENV:', REACT_APP_ENV);
-    console.log('API_URL', API_URL);
-    console.log('API_AUTH_URL', API_URL);
+    // console.log('NODE_ENV:', NODE_ENV);
+    // console.log('REACT_APP_ENV:', REACT_APP_ENV);
+    // console.log('API_URL', API_URL);
+    // console.log('API_AUTH_URL', API_URL);
 
-    const tmp = undefined;
+    // const tmp = undefined;
 
-    console.log('tmp === undefined', tmp === undefined);
-    console.log('tmp === null', tmp === null);
-    console.log('tmp ?? false', tmp ?? false);
+    // console.log('tmp === undefined', tmp === undefined);
+    // console.log('tmp === null', tmp === null);
+    // console.log('tmp ?? false', tmp ?? false);
 
-    const tmp2 = null;
+    // const tmp2 = null;
 
-    console.log('tmp2 === undefined', tmp2 === undefined);
-    console.log('tmp2 === null', tmp2 === null);
-    console.log('tmp2 ?? false', tmp2 ?? false);
+    // console.log('tmp2 === undefined', tmp2 === undefined);
+    // console.log('tmp2 === null', tmp2 === null);
+    // console.log('tmp2 ?? false', tmp2 ?? false);
 
     // 销毁的时候
     return () => {};
@@ -109,14 +113,14 @@ export default () => {
         </Access>
       </div>
 
-      <div>国际化测试 --- 当前语言为：</div>
-      <FormattedMessage id="navbar.lang" />
+      <div>
+        国际化测试 --- 当前语言为：
+        {intl.formatMessage({
+          id: 'navbar.lang',
+        })}
+      </div>
 
       <DatePicker></DatePicker>
-
-      {/* <div className="container">
-        <ImgViewer />
-      </div> */}
 
       <div>
         <Button

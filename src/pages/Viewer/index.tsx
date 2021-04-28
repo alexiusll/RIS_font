@@ -8,41 +8,68 @@ import _ from 'lodash';
 import { Responsive } from 'react-grid-layout';
 import { useResizeDetector } from 'react-resize-detector';
 import { Button, Switch } from 'antd';
+
 import style from './style.less';
 import TopToolbar from './TopToolbar';
 import ImgViewer from './ImgViewer';
 import LeftToolbar from './LeftToolbar';
+import RightToolbar from './RightToolbar';
 // 引入 样式
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-
-const Contents = {
-  top: (
-    <>
-      <div className={`${style.layout_items_header} rgl-drag-zone`}>顶部工具栏</div>
-      <TopToolbar />
-    </>
-  ),
-  left: (
-    <>
-      <div className={`${style.layout_items_header} rgl-drag-zone`}>左侧工具栏</div>
-      <LeftToolbar />
-    </>
-  ),
-  right: <div className={`${style.layout_items_header} rgl-drag-zone`}>右侧工具栏</div>,
-  img: (
-    <>
-      <div className={`${style.layout_items_header} rgl-drag-zone`}>阅片区</div>
-      <ImgViewer />
-    </>
-  ),
-};
+import { useIntl } from 'umi';
 
 type ViewerProps = {
   initialLayout?: any;
 };
 
 const Viewer: React.FC<ViewerProps> = (props) => {
+  // 国际化配置
+  const intl = useIntl();
+
+  const Contents = {
+    top: (
+      <>
+        <div className={`${style.layout_items_header} rgl-drag-zone`}>
+          {intl.formatMessage({
+            id: 'viewer.Top-toolbar',
+          })}
+        </div>
+        <TopToolbar />
+      </>
+    ),
+    left: (
+      <>
+        <div className={`${style.layout_items_header} rgl-drag-zone`}>
+          {intl.formatMessage({
+            id: 'viewer.Left-toolbar',
+          })}
+        </div>
+        <LeftToolbar />
+      </>
+    ),
+    right: (
+      <>
+        <div className={`${style.layout_items_header} rgl-drag-zone`}>
+          {intl.formatMessage({
+            id: 'viewer.Right-toolbar',
+          })}
+        </div>
+        <RightToolbar />
+      </>
+    ),
+    img: (
+      <>
+        <div className={`${style.layout_items_header} rgl-drag-zone`}>
+          {intl.formatMessage({
+            id: 'viewer.Image-viewer',
+          })}
+        </div>
+        <ImgViewer />
+      </>
+    ),
+  };
+
   const { initialLayout } = props;
   const [layouts, setLayouts] = useState<any>(undefined);
   // 布局的开启状态
@@ -195,9 +222,9 @@ const Viewer: React.FC<ViewerProps> = (props) => {
 Viewer.defaultProps = {
   initialLayout: [
     { i: 'top', x: 0, y: 0, w: 12, h: 1, static: true, resizeHandles: [] },
-    { i: 'left', x: 0, y: 1, w: 1, h: 8 },
+    { i: 'left', x: 0, y: 1, w: 2, h: 8 },
     { i: 'right', x: 11, y: 1, w: 2, h: 8 },
-    { i: 'img', x: 1, y: 1, w: 9, h: 8 },
+    { i: 'img', x: 2, y: 1, w: 8, h: 8 },
   ],
 };
 

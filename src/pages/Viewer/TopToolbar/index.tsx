@@ -7,6 +7,7 @@ import { BarsOutlined, DownloadOutlined, SettingOutlined, UploadOutlined } from 
 import { Button, Dropdown, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
 import style from './style.less';
+import { useIntl } from 'umi';
 
 const ToolButton: React.FC<{ onClick?: () => void }> = (props) => {
   const { children, onClick } = props;

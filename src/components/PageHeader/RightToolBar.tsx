@@ -4,17 +4,11 @@
  * @Date: 2021-03-23 16:26:09
  */
 
-import React, { CSSProperties, useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Menu, Dropdown, Modal, Button, Badge, Popover } from 'antd';
 import { connect, useModel } from 'umi';
-import {
-  BarsOutlined,
-  BellOutlined,
-  DownloadOutlined,
-  HomeOutlined,
-  SettingOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { BellOutlined, HomeOutlined } from '@ant-design/icons';
 
 interface RightToolBarProps {
   // onClickSign: () => void;
@@ -65,31 +59,6 @@ const RightToolBar: React.FC<RightToolBarProps> = (props) => {
 
   return (
     <div style={bodyStyle}>
-      {/* <ToolButton>
-        <UploadOutlined style={{ fontSize: '28px' }} />
-      </ToolButton>
-
-      <ToolButton>
-        <DownloadOutlined style={{ fontSize: '28px' }} />
-      </ToolButton>
-
-      <Dropdown overlay={menu} placement="bottomCenter" arrow>
-        <a
-          style={{
-            height: '48px',
-            width: '48px',
-            textAlign: 'center',
-            paddingTop: '10px',
-          }}
-        >
-          <BarsOutlined style={{ fontSize: '28px', display: 'block' }} />
-        </a>
-      </Dropdown>
-
-      <ToolButton>
-        <SettingOutlined style={{ fontSize: '28px' }} />
-      </ToolButton> */}
-
       <ToolButton>
         <HomeOutlined style={{ fontSize: '28px' }} />
       </ToolButton>

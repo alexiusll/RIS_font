@@ -4,12 +4,14 @@
  * @Date: 2020-09-06 21:24:32
  */
 
-import ProLayout, {
+import type {
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,
   Settings,
 } from '@ant-design/pro-layout';
-import { Link, useIntl, connect, Dispatch } from 'umi';
+import ProLayout from '@ant-design/pro-layout';
+import type { Dispatch } from 'umi';
+import { Link, useIntl, connect } from 'umi';
 import React, { useEffect, useState } from 'react';
 import RightContent from '@/components/PageHeader/RightContent';
 import logoImg from '@/assets/rayplus.png';

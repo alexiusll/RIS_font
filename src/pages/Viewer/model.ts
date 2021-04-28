@@ -6,10 +6,13 @@
 import type { Reducer } from 'umi';
 import { Effect } from 'umi';
 
+import HelloWorldTool from '@/lib/cornerstoneTools/HelloWorldTool';
+
 export type StateType = {
   GridLayout: { x: number; y: number };
   activeTool: string;
   cornerstoneElement: any;
+  tools: any;
 };
 
 /**
@@ -19,6 +22,44 @@ const initialState = {
   GridLayout: { x: 1, y: 1 },
   activeTool: 'Wwwc',
   cornerstoneElement: null,
+  tools: [
+    // Mouse
+    {
+      name: 'Wwwc',
+      mode: 'active',
+      modeOptions: { mouseButtonMask: 1 },
+    },
+    {
+      name: 'Zoom',
+      mode: 'active',
+      modeOptions: { mouseButtonMask: 2 },
+    },
+    {
+      name: 'Pan',
+      mode: 'active',
+      modeOptions: { mouseButtonMask: 4 },
+    },
+    'Length',
+    'Angle',
+    'Bidirectional',
+    'FreehandRoi',
+    'Eraser',
+
+    // 自定义工具
+    {
+      name: 'HelloWorld',
+      mode: 'active',
+      toolClass: HelloWorldTool,
+      props: { name: 'HelloWorld' },
+    },
+
+    // Scroll
+    { name: 'StackScrollMouseWheel', mode: 'active' },
+    // Touch
+    { name: 'PanMultiTouch', mode: 'active' },
+    { name: 'ZoomTouchPinch', mode: 'active' },
+    { name: 'StackScrollMultiTouch', mode: 'active' },
+  ],
 };
 
 export interface ModelType {

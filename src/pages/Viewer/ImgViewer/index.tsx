@@ -11,10 +11,6 @@ import { connect } from 'umi';
 import type { StateType } from '../model';
 import style from './style.less';
 
-import cornerstoneTools from 'cornerstone-tools';
-
-import HelloWorldTool from '@/lib/cornerstoneTools/HelloWorldTool';
-
 type ImgViewerProps = {
   dispatch: Dispatch;
   ImgViewer2D: StateType;
@@ -25,7 +21,6 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
   const { width, height, ref } = useResizeDetector();
   const [GridLayoutItems, setGridLayoutItems] = useState<number[]>([]);
   const [activeViewportIndex, setActiveViewportIndex] = useState(1);
-  const [activeTool, setActiveTool] = useState('Wwwc');
 
   useEffect(() => {
     console.log('ImgViewer: width:', width);
@@ -58,50 +53,16 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
     return () => {};
   }, [ImgViewer2D.GridLayout]);
 
-  const tools = [
-    // Mouse
-    {
-      name: 'Wwwc',
-      mode: 'active',
-      modeOptions: { mouseButtonMask: 1 },
-    },
-    {
-      name: 'Zoom',
-      mode: 'active',
-      modeOptions: { mouseButtonMask: 2 },
-    },
-    {
-      name: 'Pan',
-      mode: 'active',
-      modeOptions: { mouseButtonMask: 4 },
-    },
-    'Length',
-    'Angle',
-    'Bidirectional',
-    'FreehandRoi',
-    'Eraser',
-
-    // 自定义工具
-    {
-      name: 'HelloWorld',
-      mode: 'active',
-      toolClass: HelloWorldTool,
-      props: { name: 'HelloWorld' },
-    },
-
-    // Scroll
-    { name: 'StackScrollMouseWheel', mode: 'active' },
-    // Touch
-    { name: 'PanMultiTouch', mode: 'active' },
-    { name: 'ZoomTouchPinch', mode: 'active' },
-    { name: 'StackScrollMultiTouch', mode: 'active' },
-  ];
-
   useEffect(() => {
     // 初始化
 
     // 销毁的时候
-    return () => {};
+    return () => {
+      dispatch({
+        type: 'ImgViewer2D/save',
+        payload: { cornerstoneElement: null },
+      });
+    };
   }, []);
 
   const imageIds = [
@@ -115,7 +76,7 @@ const ImgViewer: React.FC<ImgViewerProps> = (props) => {
       {GridLayoutItems.map((viewportIndex) => (
         <CornerstoneViewport
           key={viewportIndex}
-          tools={tools}
+          tools={ImgViewer2D?.tools}
           imageIds={imageIds}
           activeTool={ImgViewer2D?.activeTool}
           style={{

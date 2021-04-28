@@ -5,7 +5,7 @@
  */
 import React, { useEffect, useState } from 'react';
 import { Avatar, Menu, Dropdown, Modal } from 'antd';
-import { connect, useModel, SelectLang } from 'umi';
+import { connect, useModel } from 'umi';
 import { UserOutlined, HighlightOutlined, LogoutOutlined } from '@ant-design/icons';
 import { UseInfoDataType } from '@/models/data';
 import Cookies from 'js-cookie';
@@ -14,6 +14,9 @@ import styles from './index.less';
 
 import AvatarDrowdown from './AvatarDrowdown';
 import RightToolBar from './RightToolBar';
+
+import type { ClickParam } from 'antd/es/menu';
+import { SelectLang } from './SelectLang';
 
 interface GlobalHeaderRightProps {
   onClickSign: () => void;
@@ -35,7 +38,7 @@ const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = (props) => {
       <AvatarDrowdown />
 
       <span style={{ display: 'inline-block', marginLeft: '12px' }}>
-        <SelectLang />
+        <SelectLang reload={false} />
       </span>
     </div>
   );
